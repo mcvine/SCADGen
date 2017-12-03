@@ -7,7 +7,7 @@ class Intersection(Binary):
         Stores the components for the Intersection
         in member variables self.comp1 self.comp2.
         """
-        Binary.__init__(comp1, comp2)
+        Binary.__init__(self, comp1, comp2)
         return
 
     def __str__(self):

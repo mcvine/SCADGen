@@ -8,7 +8,7 @@ class Difference(Binary):
         operation in member variables self.comp1 and
         self.comp2.
         """
-        Binary.__init__(comp1, comp2)
+        Binary.__init__(self, comp1, comp2)
         return
 
     def __str__(self):
