@@ -70,6 +70,17 @@ class Parser:
         else:
             return False
 
+    def makeBinary(self, elem):
+        tag = elem.tag
+        if tag == "difference":
+            return Difference()
+        else if tag == "intersection"
+            return Intersection()
+        else if tag == "union":
+            return Union()
+        else: 
+            raise NotImplementedError("{0!s} is not implemented".format(tag))
+
     def isUnary(self, elem):
         tag = elem.tag
         if tag == "dilation" or tag == "reflection" or tag == "rotation" or tag == "translation":
@@ -79,3 +90,32 @@ class Parser:
         else:
             return False
 
+    def makeUnary(self, elem, attrs):
+        tag = elem.tag
+        assert(len(attrs) > 0)
+        if tag == "dilation":
+            assert(attrs[0].tag == "scale")
+            return Dilation(attrs[0])
+        else if tag == "reflection":
+            assert(attrs[0].tag == "vector")
+            return Reflection(attrs[0])
+        else if tag == "reversal":
+            raise NotImplementedError("Reversal is not yet implemented")
+        else if tag == "rotation":
+            assert(len(attrs) >= 2)
+            assert((attrs[0].tag == "angle" and attrs[1].tag == "vector")
+                or (attrs[0].tag == "vector" and attrs[1].tag == "angle"))
+            angle = None
+            vector = None
+            if attrs[0] == "angle":
+                angle = attrs[0]
+                vector = attrs[1]
+            else:
+                angle = attrs[1]
+                vector = attrs[0]
+            return Rotation(angle, vector)
+        else if tag == "translation":
+            assert(attrs[0].tag == "vector")
+            return Translation(attrs[0])
+        else:
+            raise NotImplementedError("{0!s} is not implemented".format(tag))
