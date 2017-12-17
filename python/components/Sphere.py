@@ -1,30 +1,16 @@
+import xml.etree.ElementTree as ET
+
 class Sphere:
 
-    def __init__(self, xml_line):
+    def __init__(self, xml_elem):
         """
         Gets the radius for the sphere from
-        its line in the XML file (xml line) and
-        stores them in member variable self.radius.
+        its line in the XML file (xml line).
+        The contents of this line are acessed with
+        the xml.etree.ElementTree.Element object, xml_elem.
         """
-        self.radius = self.get_radius(xml_line)
+        self.radius = xml_elem.get("radius")
         return 
-
-    def get_radius(self, line):
-        """
-        Locates the "radius" tag in "line" and uses its
-        position to determine the radius value. Then, converts
-        the value to a float, and returns it.
-        """
-        rad_start_index = line.index("radius")
-        rad_start_index = rad_start_index + 8
-        rad_substr = line[rad_start_index:]
-        rad_ind2 = 0
-        for c in rad_substr:
-            if c == "\"":
-                break
-            rad_ind2 += 1
-        rad_substr = rad_substr[:rad_ind2]
-        return float(rad_substr)
 
     def __str__(self):
         """
