@@ -2,13 +2,13 @@ from Transformation import Transformation
 
 class Translation(Transformation):
 
-    def __init__(self, body, vector):
+    def __init__(self, vector):
         """
         Stores the component for the translation and
         the translation directions in member variables
         self.body and self.vector.
         """
-        Transformation.__init__(self, body)
+        Transformation.__init__(self)
         self.vector = vector
         return
 

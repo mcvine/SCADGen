@@ -2,13 +2,13 @@ from Tranformation import Transformation
 
 class Dilation(Transformation):
 
-    def __init__(self, body, scale):
+    def __init__(self, scale):
         """
         Stores the component for the Dilation and
         the scaling factor in member variables
         self.body and self.scale.
         """
-        Transformation.__init__(self, body)
+        Transformation.__init__(self)
         self.scale = scale
         return
 

@@ -2,14 +2,14 @@ from Transformation import Transformation
 
 class Rotation(Transformation):
 
-    def __init__(self, body, vector, angle):
+    def __init__(self, vector, angle):
         """
         Stores the component for the rotation, the
         vector about which the rotation occurs, and the
         angle of rotation in self.body, self.vector, and
         self.angle.
         """
-        Transformation.__init__(self, body)
+        Transformation.__init__(self)
         self.angle = angle
         self.vector = vector
 

@@ -2,13 +2,13 @@ from Binary import Binary
 
 class Union(Binary):
 
-    def __init__(self, comp1, comp2):
+    def __init__(self):
         """
         Stores the two components for the Union
         operation in member variables self.comp1 and
         self.comp2.
         """
-        Binary.__init__(self, comp1, comp2)
+        Binary.__init__(self)
         return
 
     def __str__(self):
