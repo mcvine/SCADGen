@@ -14,9 +14,10 @@ class Parser:
     def parse(self):
         root = self.xmltree.getroot()
         for child in root:
+            self.rootelems.append(self.getRootElem(child))
 
     def getRootElem(self, elem):
-        assert(elem is ET.Element, "Error: {0!s} is not an XML Element".format(elem))
+        ## assert(elem is ET.Element, "Error: {0!s} is not an XML Element".format(elem))
         if self.isComp(elem):
             return self.makeComp(elem)
         else if self.isBinary(elem):
@@ -119,3 +120,17 @@ class Parser:
             return Translation(attrs[0])
         else:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
+
+    def printTorusModule(self):
+        """
+        Returns a string containing the OpenSCAD code
+        for the Torus module. When a torus is used,
+        the string will be added to the beginning of
+        the OpenSCAD file.
+        """
+        return """module Torus(rx, ry) {
+                      resize([rx, ry, 10])
+                      rotate_extrude(convexity = 10)
+                      translate([2, 0, 0])
+                      circle(r = 1, $fn = 100)
+                  }"""
