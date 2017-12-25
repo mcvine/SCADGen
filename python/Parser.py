@@ -8,6 +8,8 @@ class Parser:
     def __init__(self, xml_file):
         self.xmltree = ET.parse(xml_file)
         self.rootelems = []
+        self.containsTorus = False
+        self.filename = xml_file
         self.parse()
         return
 
@@ -58,6 +60,7 @@ class Parser:
         else if tag == "sphere":
             return Sphere(elem)
         else if tag == "torus":
+            self.containsTorus = True
             return Torus(elem)
         else if tag == "generalized-cone":            
             raise NotImplementedError("Generalized Cone is not yet implemented")
@@ -134,3 +137,15 @@ class Parser:
                       translate([2, 0, 0])
                       circle(r = 1, $fn = 100)
                   }"""
+
+    def createSCAD(self):
+        fname = self.filename[:-3] + "scad"
+        scadfile = open(fname, "w+")
+        if self.containsTorus:
+            scadefile.write(self.printTorusModule())
+        for elem in self.rootelems: 
+            if self.isComp(elem):
+                continue
+            scadfile.write("{0!s}".format(elem))
+        scadfile.close()
+        return
