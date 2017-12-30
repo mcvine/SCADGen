@@ -1,6 +1,17 @@
-from components import Block, Cone, Cylinder, Sphere, Torus
-from operations import Binary, Difference, Dilation, Intersection
-from operations import Reflection, Rotation, Transformation, Translation, Union
+from components.Block import Block
+from components.Cone import Cone
+from components.Cylinder import Cylinder
+from components.Sphere import Sphere
+from components.Torus import Torus
+from operations.Binary import Binary
+from operations.Difference import Difference
+from operations.Dilation import Dilation
+from operations.Intersection import Intersection
+from operations.Reflection import Reflection
+from operations.Rotation import Rotation
+from operations.Transformation import Transformation
+from operations.Translation import Translation
+from operations.Union import Union
 import xml.etree.ElementTree as ET
 
 class Parser:
@@ -22,7 +33,7 @@ class Parser:
         ## assert(elem is ET.Element, "Error: {0!s} is not an XML Element".format(elem))
         if self.isComp(elem):
             return self.makeComp(elem)
-        else if self.isBinary(elem):
+        elif self.isBinary(elem):
             children = list(elem)
             bin_op = self.makeBinary(elem)
             bin_op.comp1 = self.getRootElem(children[0])
@@ -44,7 +55,7 @@ class Parser:
         tag = elem.tag
         if tag == "block" or tag == "cone" or tag == "cylinder" or tag == "sphere" or tag == "torus":
             return True
-        else if tag == "generalized-cone":
+        elif tag == "generalized-cone":
             raise NotImplementedError("Generalized Cone is not yet implemented")
         else:
             return False
@@ -53,16 +64,16 @@ class Parser:
         tag = elem.tag
         if tag == "block":
             return Block(elem)
-        else if tag == "cone":
+        elif tag == "cone":
             return Cone(elem)
-        else if tag == "cylinder":
+        elif tag == "cylinder":
             return Cylinder(elem)
-        else if tag == "sphere":
+        elif tag == "sphere":
             return Sphere(elem)
-        else if tag == "torus":
+        elif tag == "torus":
             self.containsTorus = True
             return Torus(elem)
-        else if tag == "generalized-cone":            
+        elif tag == "generalized-cone":            
             raise NotImplementedError("Generalized Cone is not yet implemented")
         else:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
@@ -78,9 +89,9 @@ class Parser:
         tag = elem.tag
         if tag == "difference":
             return Difference()
-        else if tag == "intersection"
+        elif tag == "intersection":
             return Intersection()
-        else if tag == "union":
+        elif tag == "union":
             return Union()
         else: 
             raise NotImplementedError("{0!s} is not implemented".format(tag))
@@ -89,7 +100,7 @@ class Parser:
         tag = elem.tag
         if tag == "dilation" or tag == "reflection" or tag == "rotation" or tag == "translation":
             return True
-        else if tag == "reversal":
+        elif tag == "reversal":
             raise NotImplementedError("Reversal is not yet implemented")
         else:
             return False
@@ -100,12 +111,12 @@ class Parser:
         if tag == "dilation":
             assert(attrs[0].tag == "scale")
             return Dilation(attrs[0])
-        else if tag == "reflection":
+        elif tag == "reflection":
             assert(attrs[0].tag == "vector")
             return Reflection(attrs[0])
-        else if tag == "reversal":
+        elif tag == "reversal":
             raise NotImplementedError("Reversal is not yet implemented")
-        else if tag == "rotation":
+        elif tag == "rotation":
             assert(len(attrs) >= 2)
             assert((attrs[0].tag == "angle" and attrs[1].tag == "vector")
                 or (attrs[0].tag == "vector" and attrs[1].tag == "angle"))
@@ -118,7 +129,7 @@ class Parser:
                 angle = attrs[1]
                 vector = attrs[0]
             return Rotation(angle, vector)
-        else if tag == "translation":
+        elif tag == "translation":
             assert(attrs[0].tag == "vector")
             return Translation(attrs[0])
         else:
@@ -144,7 +155,7 @@ class Parser:
         if self.containsTorus:
             scadefile.write(self.printTorusModule())
         for elem in self.rootelems: 
-            if self.isComp(elem):
+            if elem.isComp():
                 continue
             scadfile.write("{0!s}".format(elem))
         scadfile.close()
