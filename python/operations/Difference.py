@@ -1,4 +1,4 @@
-from Binary import Binary
+from .Binary import Binary
 
 class Difference(Binary):
 
@@ -16,7 +16,7 @@ class Difference(Binary):
         Returns a string containing the SCAD code
         for implementing a difference.
         """ 
-        return """difference() {
-                      {0!s};
-                      {1!s};
-                  }""".format(self.comp1, self.comp2)
+        return """difference() {{
+    {0!s}
+    {1!s}
+}}""".format(self.comp1, self.comp2)

@@ -1,4 +1,4 @@
-from Binary import Binary
+from .Binary import Binary
 
 class Intersection(Binary):
 
@@ -15,7 +15,7 @@ class Intersection(Binary):
         Returns a string containing the SCAD
         code for implementing an intersection.
         """
-        return """intersection() {
-                      {0!s};
-                      {1!s};
-                  }""".format(self.comp1, self.comp2)
+        return """intersection() {{
+    {0!s}
+    {1!s}
+}}""".format(self.comp1, self.comp2)

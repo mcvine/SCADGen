@@ -1,4 +1,4 @@
-from Tranformation import Transformation
+from .Transformation import Transformation
 
 class Dilation(Transformation):
 
@@ -17,6 +17,6 @@ class Dilation(Transformation):
         Returns a string containing the SCAD
         code for the dilation.
         """
-        return """scale([{0!s}, {0!s}, {0!s}]) {
-                      {1!s};
-                  }""".format(self.scale, self.body)
+        return """scale([{0!s}, {0!s}, {0!s}]) {{
+    {1!s}
+}}""".format(self.scale, self.body)

@@ -1,4 +1,4 @@
-from Transformation import Transformation
+from .Transformation import Transformation
 
 class Rotation(Transformation):
 
@@ -18,7 +18,6 @@ class Rotation(Transformation):
         Returns a string containing the SCAD
         code for implementing the rotation.
         """
-        return """rotate({0!s},[{1!s}, {2!s}, {3!s}]) {
-                      {4!s};
-                  }""".format(self.angle, self.vector[0], self.vector[1],
-                              self.vector[2], self.body)
+        return """rotate({0!s},[{1!s}, {2!s}, {3!s}]) {{
+    {4!s}
+}}""".format(self.angle, self.vector[0], self.vector[1], self.vector[2], self.body)

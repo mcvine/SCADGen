@@ -1,4 +1,4 @@
-from Binary import Binary
+from .Binary import Binary
 
 class Union(Binary):
 
@@ -16,7 +16,7 @@ class Union(Binary):
         Returns a string containing the SCAD
         code for implementing the Union.
         """
-        return """union() {
-                      {0!s};
-                      {1!s};
-                  }""".format(self.comp1, self.comp2)
+        return """union() {{
+    {0!s}
+    {1!s}
+}}""".format(self.comp1, self.comp2)

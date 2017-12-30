@@ -4,3 +4,6 @@ class Binary:
         self.comp1 = None
         self.comp2 = None
         return
+
+    def isComp(self):
+        return False

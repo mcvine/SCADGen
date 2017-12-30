@@ -1,4 +1,4 @@
-from Transformation import Transformation
+from .Transformation import Transformation
 
 class Reflection(Transformation):
 
@@ -17,7 +17,6 @@ class Reflection(Transformation):
         Returns a string containing the SCAD
         code for the reflection.
         """
-        return """mirror([{0!s}, {1!s}, {2!s}]) {
-                      {3!s};
-                  }""".format(self.vector[0], self.vector[1],
-                              self.vector[2], self.body)
+        return """mirror([{0!s}, {1!s}, {2!s}]) {{
+    {3!s}
+}}""".format(self.vector[0], self.vector[1], self.vector[2], self.body)
