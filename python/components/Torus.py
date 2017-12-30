@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
+from .Component import Component
 
-class Torus:
+class Torus(Component):
 
     def __init__(self, xml_elem):
         """

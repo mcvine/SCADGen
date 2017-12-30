@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
+from .Component import Component
 
-class Cone:
+class Cone(Component):
 
     def __init__(self, xml_elem):
         """

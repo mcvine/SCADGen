@@ -1,6 +1,7 @@
 import xml.etree.ElementTree as ET
+from .Component import Component
 
-class Block:
+class Block(Component):
 
     def __init__(self, xml_elem):
         """
@@ -9,10 +10,13 @@ class Block:
         accessed with the xml.etree.ElementTree.Element
         object, xml_elem.
         """
-        diagonal = xml_elem.get("diagonal")
-        self.x = diagonal[0]
-        self.y = diagonal[1]
-        self.z = diagonal[2]
+        """diagonal = xml_elem.get("diagonal")
+        diagonal = diagonal[1:-1]
+        comma1 = diagonal.find(",")
+        comma2 = diagonal[comma1+1:].find(",")"""
+        self.x = float(xml_elem.get("thickness")) #float(diagonal[:comma1])
+        self.y = float(xml_elem.get("width")) #float(diagonal[comma1+1:comma2])
+        self.z = float(xml_elem.get("height")) #float(diagonal[comma2+1:])
         return 
 
     def __str__(self):
