@@ -110,10 +110,10 @@ class Parser:
         assert(len(attrs) > 0)
         if tag == "dilation":
             assert(attrs[0].tag == "scale")
-            return Dilation(attrs[0])
+            return Dilation(float(attrs[0].text))
         elif tag == "reflection":
             assert(attrs[0].tag == "vector")
-            return Reflection(attrs[0])
+            return Reflection(attrs[0].text)
         elif tag == "reversal":
             raise NotImplementedError("Reversal is not yet implemented")
         elif tag == "rotation":
@@ -122,16 +122,16 @@ class Parser:
                 or (attrs[0].tag == "vector" and attrs[1].tag == "angle"))
             angle = None
             vector = None
-            if attrs[0] == "angle":
+            if attrs[0].tag == "angle":
                 angle = attrs[0]
                 vector = attrs[1]
             else:
                 angle = attrs[1]
                 vector = attrs[0]
-            return Rotation(angle, vector)
+            return Rotation(float(angle.text), vector.text)
         elif tag == "translation":
             assert(attrs[0].tag == "vector")
-            return Translation(attrs[0])
+            return Translation(attrs[0].text)
         else:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
 
@@ -143,17 +143,17 @@ class Parser:
         the OpenSCAD file.
         """
         return """module Torus(rx, ry) {
-                      resize([rx, ry, 10])
-                      rotate_extrude(convexity = 10)
-                      translate([2, 0, 0])
-                      circle(r = 1, $fn = 100)
-                  }"""
+    resize([rx, ry, 10])
+    rotate_extrude(convexity = 10)
+    translate([2, 0, 0])
+    circle(r = 1, $fn = 100);
+}\n\n"""
 
     def createSCAD(self):
         fname = self.filename[:-3] + "scad"
         scadfile = open(fname, "w+")
         if self.containsTorus:
-            scadefile.write(self.printTorusModule())
+            scadfile.write(self.printTorusModule())
         for elem in self.rootelems: 
             if elem.isComp():
                 continue

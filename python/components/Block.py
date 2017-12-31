@@ -10,13 +10,13 @@ class Block(Component):
         accessed with the xml.etree.ElementTree.Element
         object, xml_elem.
         """
-        """diagonal = xml_elem.get("diagonal")
+        diagonal = xml_elem.get("diagonal")
         diagonal = diagonal[1:-1]
         comma1 = diagonal.find(",")
-        comma2 = diagonal[comma1+1:].find(",")"""
-        self.x = float(xml_elem.get("thickness")) #float(diagonal[:comma1])
-        self.y = float(xml_elem.get("width")) #float(diagonal[comma1+1:comma2])
-        self.z = float(xml_elem.get("height")) #float(diagonal[comma2+1:])
+        comma2 = diagonal[comma1+1:].find(",") + comma1 + 1
+        self.x = float(diagonal[:comma1].replace(" ", ""))
+        self.y = float(diagonal[comma1+1:comma2].replace(" ", ""))
+        self.z = float(diagonal[comma2+1:].replace(" ", ""))
         return 
 
     def __str__(self):

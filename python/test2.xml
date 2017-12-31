@@ -1,0 +1,13 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <union>
+        <dilation>
+            <torus major="5" minor="2.5"/>
+            <scale>2</scale>
+        </dilation>
+        <cylinder height="2" radius="5"/>
+    </union>
+
+</geometry>

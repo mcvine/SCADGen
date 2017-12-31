@@ -9,7 +9,13 @@ class Translation(Transformation):
         self.body and self.vector.
         """
         Transformation.__init__(self)
-        self.vector = vector
+        self.vector = []
+        v = vector[1:-1]
+        comma1 = v.find(",")
+        comma2 = v[comma1+1:].find(",") + comma1 + 1
+        self.vector.append(float(v[:comma1].replace(" ", "")))
+        self.vector.append(float(v[comma1+1:comma2].replace(" ", "")))
+        self.vector.append(float(v[comma2+1:].replace(" ", "")))
         return
 
     def __str__(self):
