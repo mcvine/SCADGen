@@ -1,3 +1,5 @@
+from __future__ import absolute_import
+
 from components.Block import Block
 from components.Cone import Cone
 from components.Cylinder import Cylinder
