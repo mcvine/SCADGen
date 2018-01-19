@@ -1,0 +1,10 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <dilation>
+        <block diagonal="(1, 1, 1)"/>
+        <scale>5</scale>
+    </dilation>
+
+</geometry>

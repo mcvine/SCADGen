@@ -1,0 +1,7 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <torus major="10" minor="5"/>
+
+</geometry>

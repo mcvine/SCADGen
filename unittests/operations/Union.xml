@@ -1,0 +1,10 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <union>
+        <sphere radius="2.5"/>
+        <cylinder height="5" radius="1"/>
+    </union>
+
+</geometry>
