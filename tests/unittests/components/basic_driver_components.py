@@ -2,7 +2,7 @@ from __future__ import absolute_import
 
 import sys
 import os
-sys.path.append(os.path.abspath("../../../python"))
+sys.path.append(os.path.abspath("../../../SCADGen/python"))
 
 import glob
 from Parser import Parser
