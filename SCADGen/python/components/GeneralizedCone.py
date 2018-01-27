@@ -5,4 +5,5 @@ from .Component import Component
 
 class GeneralizedCone(Component):
 
+    """This component is not yet implemented."""
     pass

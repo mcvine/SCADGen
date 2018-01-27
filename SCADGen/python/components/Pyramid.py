@@ -5,4 +5,6 @@ from .Component import Component
 
 class Pyramid(Component):
 
+    """This component is not yet implemented
+       in pyre, so it is not implemented here."""
     pass
