@@ -10,7 +10,7 @@ class Cone(Component):
         Gets bottom/top radius and height for the cone
         from the attributes from its XML line. These attributes
         are accessed with the xml.etree.ElementTree.Element
-        object, xml_elem."
+        object, xml_elem.
         """
         self.bottom_radius = xml_elem.get("bottomRadius")
         self.top_radius = xml_elem.get("topRadius")
