@@ -28,6 +28,7 @@ class Parser:
         self.xmltree = ET.parse(xml_file)
         self.rootelems = []
         self.containsTorus = False
+        self.containsop = False
         self.filename = xml_file
         self.parse()
         return
@@ -141,6 +142,8 @@ class Parser:
         If the element is not (yet) implemented in this
         repository, a NotImplementedError is raised.
         """
+        if not self.containsop:
+            self.containsop = True
         tag = elem.tag
         if tag == "difference":
             return Difference()
@@ -160,6 +163,8 @@ class Parser:
         has not yet been implemented in this repository. This will
         be removed later.
         """
+        if not self.containsop:
+            self.containsop = True
         tag = elem.tag
         if tag == "dilation" or tag == "reflection" or tag == "rotation" or tag == "translation":
             return True
@@ -235,7 +240,7 @@ class Parser:
         # This for loop causes any root elements that do not have
         # children to not be printed to the OpenSCAD file.
         for elem in self.rootelems: 
-            if elem.isComp():
+            if self.containsop and elem.isComp():
                 continue
             scadfile.write("{0!s}".format(elem))
         scadfile.close()
