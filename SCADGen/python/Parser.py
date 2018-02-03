@@ -221,7 +221,7 @@ class Parser:
         the OpenSCAD file.
         """
         return """module Torus(rx, ry) {
-    resize([rx, ry, 10])
+    resize([rx, ry, 2])
     rotate_extrude(convexity = 10)
     translate([2, 0, 0])
     circle(r = 1, $fn = 100);

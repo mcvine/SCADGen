@@ -20,4 +20,4 @@ class Cylinder(Component):
         Returns a string containing the SCAD
         code for this cylinder object.
         """
-        return "cylinder(h = {0!s}, r = {1!s});".format(self.height, self.radius)
+        return "cylinder(h = {0!s}, r = {1!s}, $fn=100);".format(self.height, self.radius)
