@@ -2,12 +2,61 @@
 
 <geometry>
 
-    <union>
-        <dilation>
-            <torus major="5" minor="2.5"/>
-            <scale>2</scale>
-        </dilation>
-        <cylinder height="2" radius="5"/>
-    </union>
+    <difference>
+        <difference>
+            <difference>
+                <difference>
+                    <difference>
+                        <difference>
+                            <difference>
+                                <difference>
+                                    <difference>
+                                        <cylinder height="20" radius="30"/>
+                                        <cylinder height="20" radius="10"/>
+                                    </difference>
+                                <block diagonal="(30, 2.5, 20)"/>
+                                </difference>
+                                <rotation>
+                                    <block diagonal="(30, 2.5, 20)"/>
+                                    <angle>45</angle>
+                                    <vector>(0, 0, 1)</vector>
+                                </rotation>
+                            </difference>
+                            <rotation>
+                                <block diagonal="(30, 2.5, 20)"/>
+                                <angle>90</angle>
+                                <vector>(0, 0, 1)</vector>
+                            </rotation>
+                        </difference>
+                        <rotation>
+                            <block diagonal="(30, 2.5, 20)"/>
+                            <angle>135</angle>
+                            <vector>(0, 0, 1)</vector>
+                        </rotation>
+                    </difference>
+                    <rotation>
+                        <block diagonal="(30, 2.5, 20)"/>
+                        <angle>180</angle>
+                        <vector>(0, 0, 1)</vector>
+                    </rotation>
+                </difference>
+                <rotation>
+                    <block diagonal="(30, 2.5, 20)"/>
+                    <angle>225</angle>
+                    <vector>(0, 0, 1)</vector>
+                </rotation>
+            </difference>
+            <rotation>
+                <block diagonal="(30, 2.5, 20)"/>
+                <angle>270</angle>
+                <vector>(0, 0, 1)</vector>
+            </rotation>
+        </difference>
+        <rotation>
+            <block diagonal="(30, 2.5, 20)"/>
+            <angle>315</angle>
+            <vector>(0, 0, 1)</vector>
+        </rotation>
+    </difference>
 
 </geometry>
