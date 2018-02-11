@@ -2,11 +2,25 @@
 
 <geometry>
 
-    <cylinder radius="2.5" height="100"/>
-    <block diagonal="(0.1, 1, 0.2)"/>
     <union>
-        <cylinder radius="2.5" height="100"/>
-        <block diagonal="(0.1, 1, 0.2)"/>
+        <union>
+            <union>
+                <torus major="30" minor="30"/>
+                <translation>
+                    <cylinder height="10" radius="11.25"/>
+                    <vector>(0, 0, -5)</vector>
+                </translation>
+            </union>
+            <cylinder height="8.5" radius="1"/>
+        </union>
+        <translation>
+            <rotation>
+                <cylinder height="11.25" radius="1"/>
+                <angle>90</angle>
+                <vector>(0, 1, 0)</vector>
+            </rotation>
+            <vector>(-0.5, 0, 7.5)</vector>
+        </translation>
     </union>
 
 </geometry>
