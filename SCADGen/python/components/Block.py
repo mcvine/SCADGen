@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
 import xml.etree.ElementTree as ET
-from .Component import Component
+from Component import Component
 
 class Block(Component):
 
@@ -27,3 +27,6 @@ class Block(Component):
         code for this block/cube object.
         """
         return "cube([{0!s}, {1!s}, {2!s}]);".format(self.x, self.y, self.z)
+
+    def __eq__(self, rhs):
+        
