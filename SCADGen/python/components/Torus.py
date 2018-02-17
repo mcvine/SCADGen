@@ -21,3 +21,11 @@ class Torus(Component):
         for instantiating this Torus object.
         """
         return "Torus({0!s}, {1!s});".format(self.major, self.minor)
+
+    def __eq__(self, rhs):
+        if type(self) != type(rhs):
+            return False
+        elif self.major != rhs.major or self.minor != rhs.minor:
+            return False
+        else:
+            return True

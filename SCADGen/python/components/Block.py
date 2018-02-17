@@ -29,4 +29,9 @@ class Block(Component):
         return "cube([{0!s}, {1!s}, {2!s}]);".format(self.x, self.y, self.z)
 
     def __eq__(self, rhs):
-        
+        if type(self) != type(rhs):
+            return False
+        elif self.x != rhs.x or self.y != rhs.y or self.z != rhs.z:
+            return False
+        else:
+            return True

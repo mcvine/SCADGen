@@ -21,3 +21,11 @@ class Cylinder(Component):
         code for this cylinder object.
         """
         return "cylinder(h = {0!s}, r = {1!s}, $fn=100);".format(self.height, self.radius)
+
+    def __eq__(self, rhs):
+        if type(self) != type(rhs):
+            return False
+        elif self.radius != rhs.radius or self.height != rhs.height:
+            return False
+        else:
+            return True

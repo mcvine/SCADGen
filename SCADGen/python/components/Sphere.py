@@ -21,3 +21,11 @@ class Sphere(Component):
         code for this sphere objec.
         """
         return "sphere(r = {0!s}, $fn=100);".format(self.radius)
+
+    def __eq__(self, rhs):
+        if type(self) != type(rhs):
+            return False
+        elif self.radius != rhs.radius:
+            return False
+        else:
+            return True

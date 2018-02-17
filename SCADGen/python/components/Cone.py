@@ -24,3 +24,11 @@ class Cone(Component):
         """
         return "cylinder(h = {0!s}, r1 = {1!s}, r2 = {2!s}, $fn=100);".format(
             self.height, self.bottom_radius, self.top_radius)
+
+    def __eq__(self, rhs):
+        if type(self) != type(rhs):
+            return False
+        elif self.bottom_radius != rhs.bottom_radius or self.top_radius != rhs.top_radius or self.height != rhs.height:
+            return False
+        else:
+            return True
