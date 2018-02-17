@@ -1,0 +1,10 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <intersection>
+        <sphere radius="5"/>
+        <block diagonal="(5, 5, 1)"/>
+    </intersection>
+
+</geometry>

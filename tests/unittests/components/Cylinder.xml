@@ -1,0 +1,7 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <cylinder height="5" radius="2.5"/>
+
+</geometry>

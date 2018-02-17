@@ -1,0 +1,10 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <reflection>
+        <cylinder height="5" radius="2.5"/>
+        <vector>(1, 1, 1)</vector>
+    </reflection>
+
+</geometry>

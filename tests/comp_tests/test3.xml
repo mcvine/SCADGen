@@ -1,0 +1,13 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <translation>
+        <difference>
+            <cylinder height="5" radius="5"/>
+            <cylinder height="5" radius="2.5"/>
+        </difference>
+        <vector>(2.5, 3.2, 4.8)</vector>
+    </translation>
+
+</geometry>

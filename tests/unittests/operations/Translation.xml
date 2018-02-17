@@ -1,0 +1,10 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <translation>
+        <sphere radius="5"/>
+        <vector>(10, 0, 0)</vector>
+    </translation>
+
+</geometry>

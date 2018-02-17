@@ -1,0 +1,7 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <cone height="5" topRadius="2.5" bottomRadius="2.5"/>
+
+</geometry>
