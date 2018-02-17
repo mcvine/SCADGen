@@ -2,6 +2,6 @@
 
 <geometry>
 
-    <torus major="5" minor="5"/>
+    <torus major="10" minor="5"/>
 
 </geometry>
