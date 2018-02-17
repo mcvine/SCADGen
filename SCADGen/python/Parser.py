@@ -220,11 +220,10 @@ class Parser:
         the string will be added to the beginning of
         the OpenSCAD file.
         """
-        return """module Torus(rx, ry) {
-    resize([rx, ry, 2])
+        return """module Torus(major, minor) {
     rotate_extrude(convexity = 10, $fn=100)
-    translate([2, 0, 0])
-    circle(r = 1, $fn = 100);
+    translate([major, 0, 0])
+    circle(r = minor, $fn = 100);
 }\n\n"""
 
     def createSCAD(self):
