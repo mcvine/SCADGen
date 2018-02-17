@@ -1,19 +1,7 @@
 from __future__ import absolute_import
 
-from components.Block import Block
-from components.Cone import Cone
-from components.Cylinder import Cylinder
-from components.Sphere import Sphere
-from components.Torus import Torus
-from operations.Binary import Binary
-from operations.Difference import Difference
-from operations.Dilation import Dilation
-from operations.Intersection import Intersection
-from operations.Reflection import Reflection
-from operations.Rotation import Rotation
-from operations.Transformation import Transformation
-from operations.Translation import Translation
-from operations.Union import Union
+import components
+import operations
 import xml.etree.ElementTree as ET
 
 class Parser:
@@ -106,21 +94,13 @@ class Parser:
         to be created is not (yet) implemented in this repository,
         a NotImplementedError is raised.
         """
-        tag = elem.tag
-        if tag == "block":
-            return Block(elem)
-        elif tag == "cone":
-            return Cone(elem)
-        elif tag == "cylinder":
-            return Cylinder(elem)
-        elif tag == "sphere":
-            return Sphere(elem)
-        elif tag == "torus":
-            self.containsTorus = True
-            return Torus(elem)
-        elif tag == "generalized-cone":            
+        tag = elem.tag.title()
+        if tag == "Generalized-Cone":
             raise NotImplementedError("Generalized Cone is not yet implemented")
-        else:
+        try:
+            ctor = getattr(components, tag)
+            return ctor(elem)
+        except AttributeError:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
 
     def isBinary(self, elem):
@@ -144,14 +124,11 @@ class Parser:
         """
         if not self.containsop:
             self.containsop = True
-        tag = elem.tag
-        if tag == "difference":
-            return Difference()
-        elif tag == "intersection":
-            return Intersection()
-        elif tag == "union":
-            return Union()
-        else: 
+        tag = elem.tag.title()
+        try:
+            ctor = getattr(operations, tag)
+            return ctor()
+        except AttributeError:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
 
     def isUnary(self, elem):
