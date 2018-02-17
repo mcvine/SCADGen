@@ -5,7 +5,7 @@
     <union>
         <union>
             <union>
-                <torus major="30" minor="30"/>
+                <torus major="11.25" minor="5"/>
                 <translation>
                     <cylinder height="10" radius="11.25"/>
                     <vector>(0, 0, -5)</vector>
