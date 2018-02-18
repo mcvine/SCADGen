@@ -1,6 +1,6 @@
 from __future__ import absolute_import
 
-from Binary import Binary
+from .Binary import Binary
 
 class Intersection(Binary):
 
