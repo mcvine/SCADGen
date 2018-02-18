@@ -1,5 +1,6 @@
 *~
 *.pyc
-*.scad
+/tests/**/*.scad
+!parser_sol.scad
 /build
 /conda
