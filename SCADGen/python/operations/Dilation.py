@@ -24,6 +24,9 @@ class Dilation(Transformation):
 }}""".format(self.scale, self.body)
 
     def __eq__(self, rhs):
+        """
+        Returns true if the two Dilation operations are equal. Returns false otherwise.
+        """
         if type(self) != type(rhs):
             return False
         elif self.body != rhs.body or self.scale != rhs.scale:

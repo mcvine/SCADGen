@@ -37,3 +37,17 @@ def test_torusstr():
     test = components.Torus(elem1)
     sol = "Torus(10, 5);"
     assert("{0!s}".format(test) == sol)
+
+def test_differencestr():
+    elem1 = et.Element("cylinder", { "radius" : "2.5", "height" : "5" })
+    elem2 = et.Element("cone", { "bottomRadius" : "2.5", "topRadius" : "0", "height" : "5" })
+    comp1 = components.Cylinder(elem1)
+    comp2 = components.Cone(elem2)
+    test = operations.Difference()
+    test.comp1 = comp1
+    test.comp2 = comp2
+    sol = """difference() {{
+    cylinder(h = 5, r = 2.5, $fn=100);
+    cylinder(h = 5, r1 = 2.5, r2 = 0, $fn=100);
+}}"""
+    assert("{0!s}".format(test) == sol)
