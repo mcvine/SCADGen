@@ -13,38 +13,33 @@ def test_block()
     fname = os.path.abspath("../unittests/components/Block.xml")
     p = Parser(fname)
     test = p.rootelems[0]
-    elem1 = et.Element("block", { "diagonal" : "(5, 5, 5)" })
-    sol = components.Block(elem1)
-    assert(test == sol)
+    sol = [5, 5, 5]
+    assert(test.x == sol[0] and test.y == sol[1] and test.z == sol[2])
 
 def test_cone()
     fname = os.path.abspath("../unittests/components/Cone_diff_radii.xml")
     p = Parser(fname)
     test = p.rootelems[0]
-    elem1 = et.Element("cone", { "height" : "5", "topRadius" : "2", "bottomRadius" : "4" })
-    sol = components.Block(elem1)
-    assert(test == sol)
+    sol = [5, 2, 4]
+    assert(test.bottom_radius == sol[2] and test.top_radius == sol[1] and test.height == sol[0])
 
 def test_cylinder()
     fname = os.path.abspath("../unittests/components/Cylinder.xml")
     p = Parser(fname)
     test = p.rootelems[0]
-    elem1 = et.Element("cylinder", { "height" : "5", "radius" : "2.5" })
-    sol = components.Block(elem1)
-    assert(test == sol)
+    sol = [5, 2.5]
+    assert(test.radius == sol[1] and test.height == sol[0])
 
 def test_sphere()
     fname = os.path.abspath("../unittests/components/Sphere.xml")
     p = Parser(fname)
     test = p.rootelems[0]
-    elem1 = et.Element("sphere", { "radius" : "2.5" })
-    sol = components.Block(elem1)
-    assert(test == sol)
+    assert(test.radius == 2.5)
 
 def test_torus()
     fname = os.path.abspath("../unittests/components/Torus.xml")
     p = Parser(fname)
     test = p.rootelems[0]
     elem1 = et.Element("torus", { "major" : "10", "minor" : "5" })
-    sol = components.Block(elem1)
-    assert(test == sol)
+    sol = [10, 5]
+    assert(test.major == sol[0] and test.minor == sol[1])
