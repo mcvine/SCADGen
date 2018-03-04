@@ -1,4 +1,5 @@
 *~
+*.swp
 *.pyc
 /tests/**/*.scad
 !parser_sol.scad
