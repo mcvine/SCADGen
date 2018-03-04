@@ -3,13 +3,13 @@ from __future__ import absolute_import
 import filecmp
 import sys
 import os
-sys.path.append(os.path.abspath("../../SCADGen/python"))
 
-import xml.etree.ElementTree as et
+sys.path.append(os.path.abspath("../../SCADGen/python"))
 from Parser import Parser
 import components
 import operations
-import pytest
+
+import xml.etree.ElementTree as et
 
 def test_parsercore():
     fname = os.path.abspath("./test_xmls/parser_test.xml")

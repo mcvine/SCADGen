@@ -2,12 +2,13 @@ from __future__ import absolute_import
 
 import sys
 import os
-sys.path.append(os.path.abspath("../../SCADGen/python"))
 
-import xml.etree.ElementTree as et
+sys.path.append(os.path.abspath("../../SCADGen/python"))
 from Parser import Parser
 import components
 import operations
+
+import xml.etree.ElementTree as et
 
 def test_difference_Comp1Height():
     elem1 = et.Element("cylinder", { "height" : "5", "radius" : "2.5" })
