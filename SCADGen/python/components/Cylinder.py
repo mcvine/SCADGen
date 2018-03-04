@@ -23,6 +23,9 @@ class Cylinder(Component):
         return "cylinder(h = {0!s}, r = {1!s}, $fn=100);".format(self.height, self.radius)
 
     def __eq__(self, rhs):
+        """
+        Returns true if the two Cylinder components are equal. Returns false otherwise.
+        """
         if type(self) != type(rhs):
             return False
         elif self.radius != rhs.radius or self.height != rhs.height:

@@ -23,6 +23,9 @@ class Torus(Component):
         return "Torus({0!s}, {1!s});".format(self.major, self.minor)
 
     def __eq__(self, rhs):
+        """
+        Returns true if the two Torus components are equal. Returns false otherwise.
+        """
         if type(self) != type(rhs):
             return False
         elif self.major != rhs.major or self.minor != rhs.minor:
