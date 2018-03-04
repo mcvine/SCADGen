@@ -40,6 +40,5 @@ def test_torus()
     fname = os.path.abspath("../unittests/components/Torus.xml")
     p = Parser(fname)
     test = p.rootelems[0]
-    elem1 = et.Element("torus", { "major" : "10", "minor" : "5" })
     sol = [10, 5]
     assert(test.major == sol[0] and test.minor == sol[1])
