@@ -9,34 +9,34 @@ from Parser import Parser
 import components
 import operations
 
-def test_block()
+def test_block():
     fname = os.path.abspath("../unittests/components/Block.xml")
     p = Parser(fname)
     test = p.rootelems[0]
     sol = [5, 5, 5]
     assert(test.x == sol[0] and test.y == sol[1] and test.z == sol[2])
 
-def test_cone()
+def test_cone():
     fname = os.path.abspath("../unittests/components/Cone_diff_radii.xml")
     p = Parser(fname)
     test = p.rootelems[0]
     sol = [5, 2, 4]
     assert(test.bottom_radius == sol[2] and test.top_radius == sol[1] and test.height == sol[0])
 
-def test_cylinder()
+def test_cylinder():
     fname = os.path.abspath("../unittests/components/Cylinder.xml")
     p = Parser(fname)
     test = p.rootelems[0]
     sol = [5, 2.5]
     assert(test.radius == sol[1] and test.height == sol[0])
 
-def test_sphere()
+def test_sphere():
     fname = os.path.abspath("../unittests/components/Sphere.xml")
     p = Parser(fname)
     test = p.rootelems[0]
     assert(test.radius == 2.5)
 
-def test_torus()
+def test_torus():
     fname = os.path.abspath("../unittests/components/Torus.xml")
     p = Parser(fname)
     test = p.rootelems[0]
