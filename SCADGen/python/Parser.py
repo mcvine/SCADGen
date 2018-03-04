@@ -165,10 +165,10 @@ class Parser:
         assert(len(attrs) > 0)
         if tag == "dilation":
             assert(attrs[0].tag == "scale")
-            return Dilation(float(attrs[0].text))
+            return operations.Dilation(float(attrs[0].text))
         elif tag == "reflection":
             assert(attrs[0].tag == "vector")
-            return Reflection(attrs[0].text)
+            return operations.Reflection(attrs[0].text)
         elif tag == "reversal":
             raise NotImplementedError("Reversal is not yet implemented")
         elif tag == "rotation":
@@ -183,10 +183,10 @@ class Parser:
             else:
                 angle = attrs[1]
                 vector = attrs[0]
-            return Rotation(float(angle.text), vector.text)
+            return operations.Rotation(float(angle.text), vector.text)
         elif tag == "translation":
             assert(attrs[0].tag == "vector")
-            return Translation(attrs[0].text)
+            return operations.Translation(attrs[0].text)
         else:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
 

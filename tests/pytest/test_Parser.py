@@ -42,25 +42,25 @@ def test_isBinaryTrue():
     elem = et.Element("difference")
     fname = os.path.abspath("./test_xmls/empty.xml")
     p = Parser(fname)
-    assert(p.isComp(elem) == True)
+    assert(p.isBinary(elem) == True)
 
 def test_isBinaryFalse():
     elem = et.Element("cylinder", {"radius" : "1.5", "height" : "10" })
     fname = os.path.abspath("./test_xmls/empty.xml")
     p = Parser(fname)
-    assert(p.isComp(elem) == False)
+    assert(p.isBinary(elem) == False)
 
 def test_isUnaryTrue():
     elem = et.Element("dilation")
     fname = os.path.abspath("./test_xmls/empty.xml")
     p = Parser(fname)
-    assert(p.isComp(elem) == True)
+    assert(p.isUnary(elem) == True)
 
 def test_isUnaryFalse():
     elem = et.Element("cylinder", {"radius" : "1.5", "height" : "10" })
     fname = os.path.abspath("./test_xmls/empty.xml")
     p = Parser(fname)
-    assert(p.isComp(elem) == False)
+    assert(p.isUnary(elem) == False)
 
 def test_makeComp():
     elem = et.Element("cylinder", {"radius" : "1.5", "height" : "10" })
@@ -80,7 +80,8 @@ def test_makeBinary():
 
 def test_makeUnary():
     elem = et.Element("dilation")
-    attrs = [et.Element("scale", text="5")]
+    attrs = [et.Element("scale")]
+    attrs[0].text = "5"
     fname = os.path.abspath("./test_xmls/empty.xml")
     p = Parser(fname)
     test = p.makeUnary(elem, attrs)
@@ -93,4 +94,4 @@ def test_generateSCAD():
     p.createSCAD()
     test = os.path.abspath("./test_xmls/parser_test.scad")
     sol = os.path.abspath("./test_xmls/parser_sol.scad")
-    assert(filecmp.cmp(test, sol, shallow=False) == True)
+    assert(filecmp.cmp(test, sol) == True)
