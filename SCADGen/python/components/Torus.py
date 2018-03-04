@@ -12,8 +12,8 @@ class Torus(Component):
         The contents of this line are acessed through
         the xml.etree.ElementTree.Element object, xml_elem.
         """
-        self.major = xml_elem.get("major") 
-        self.minor = xml_elem.get("minor")
+        self.major = float(xml_elem.get("major"))
+        self.minor = float(xml_elem.get("minor"))
 
     def __str__(self):
         """

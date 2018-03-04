@@ -12,7 +12,7 @@ class Sphere(Component):
         The contents of this line are acessed with
         the xml.etree.ElementTree.Element object, xml_elem.
         """
-        self.radius = xml_elem.get("radius")
+        self.radius = float(xml_elem.get("radius"))
         return 
 
     def __str__(self):

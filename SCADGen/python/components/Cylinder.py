@@ -11,8 +11,8 @@ class Cylinder(Component):
         the atrributes from its XML line. These attributes are
         accessed using the xml.etree.ElementTree.Element object, xml_elem.
         """
-        self.radius = xml_elem.get("radius")
-        self.height = xml_elem.get("height")
+        self.radius = float(xml_elem.get("radius"))
+        self.height = float(xml_elem.get("height"))
         return
 
     def __str__(self):

@@ -12,9 +12,9 @@ class Cone(Component):
         are accessed with the xml.etree.ElementTree.Element
         object, xml_elem.
         """
-        self.bottom_radius = xml_elem.get("bottomRadius")
-        self.top_radius = xml_elem.get("topRadius")
-        self.height = xml_elem.get("height")
+        self.bottom_radius = float(xml_elem.get("bottomRadius"))
+        self.top_radius = float(xml_elem.get("topRadius"))
+        self.height = float(xml_elem.get("height"))
         return
 
     def __str__(self):
