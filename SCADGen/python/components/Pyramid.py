@@ -28,3 +28,14 @@ class Pyramid(Component):
              [-{0!s},-{1!s},-{2!s}], [-{0!s},{1!s},-{2!s}], [0,0,0] ],
     faces=[ [0,1,4], [1,2,4], [2,3,4], [3,0,4], [1,0,3], [2,1,3] ]
 );""".format((self.edgeX/2), (self.edgeY/2), self.height)
+
+    def __eq__(self, rhs):
+        """
+        Returns true if the two Pyramids are equal. Returns false otherwise.
+        """
+        if type(self) != type(rhs):
+            return False
+        elif self.edgeX != rhs.edgeX or self.edgeY != rhs.edgeY or self.height != rhs.height:
+            return False
+        else:
+            return True
