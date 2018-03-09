@@ -31,6 +31,13 @@ def test_cylinder():
     sol = [5, 2.5]
     assert(test.radius == sol[1] and test.height == sol[0])
 
+def test_pyramid():
+    fname = os.path.abspath("../unittests/components/Pyramid.xml")
+    p = Parser(fname)
+    test = p.rootelems[0]
+    sol = [5, 5, 10]
+    assert(test.edgeX == sol[0] and test.edgeY == sol[1] and test.height == sol[2])
+
 def test_sphere():
     fname = os.path.abspath("../unittests/components/Sphere.xml")
     p = Parser(fname)

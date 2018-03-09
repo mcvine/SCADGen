@@ -28,6 +28,16 @@ def test_cylinder_str():
     sol = "cylinder(h = 5.0, r = 2.5, $fn=100);"
     assert("{0!s}".format(test) == sol)
 
+def test_pyramid_str():
+    elem1 = et.Element("pyramid", { "edgeX" : "5", "edgeY" : "5", "height" : "10" })
+    test = components.Pyramid(elem1)
+    sol = """polyhedron(
+    points=[ [2.5,2.5,-10.0], [2.5,-2.5,-10.0],
+             [-2.5,-2.5,-10.0], [-2.5,2.5,-10.0], [0,0,0] ],
+    faces=[ [0,1,4], [1,2,4], [2,3,4], [3,0,4], [1,0,3], [2,1,3] ]
+);"""
+    assert("{0!s}".format(test) == sol)
+
 def test_sphere_str():
     elem1 = et.Element("sphere", { "radius" : "2.5" })
     test = components.Sphere(elem1)
