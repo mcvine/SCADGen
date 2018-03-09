@@ -6,12 +6,23 @@ from Component import Component
 class Pyramid(Component):
 
     def __init__(self, xml_elem):
+        """
+        Gets the base dimensions and height for the cone
+        from the attributes from its XML line. These attributes
+        are accessed with the xml.etree.ElementTree object,
+        xml_elem. This will likely need to be changed later
+        once the "formal" xml format is added to pyre.
+        """
         self.edgeX = float(xml_elem.get("edgeX"))
         self.edgeY = float(xml_elem.get("edgeY"))
         self.height = float(xml_elem.get("height"))
         return;
 
     def __str__(self):
+        """
+        Returns a string containing the SCAD code for this
+        Cone object.
+        """
         return """polyhedron(
     points=[ [{0!s},{1!s},-{2!s}], [{0!s},-{1!s},{-2!s}],
              [-{0!s},-{1!s},-{2!s}], [-{0!s},{1!s},-{2!s}], [0,0,0] ],
