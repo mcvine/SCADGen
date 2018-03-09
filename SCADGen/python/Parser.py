@@ -79,7 +79,7 @@ class Parser:
         returns False.
         """
         tag = elem.tag
-        if tag == "block" or tag == "cone" or tag == "cylinder" or tag == "sphere" or tag == "torus":
+        if tag == "block" or tag == "cone" or tag == "cylinder" or tag == "pyramid" or tag == "sphere" or tag == "torus":
             return True
         elif tag == "generalized-cone":
             raise NotImplementedError("Generalized Cone is not yet implemented")
