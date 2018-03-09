@@ -1,0 +1,7 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <pyramid edgeX="5" edgeY="5" height="10"/>
+
+</geometry>
