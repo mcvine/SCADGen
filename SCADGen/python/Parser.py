@@ -51,6 +51,12 @@ class Parser:
             bin_op.comp1 = self.getRootElem(children[0])
             bin_op.comp2 = self.getRootElem(children[1])
             return bin_op
+        elif self.isNary(elem):
+            children = list(elem)
+            nary_op = self.makeNary(elem)
+            for child in children:
+                nary_op.comps.extend(self.getRootElem(child))
+            return nary_op        
         # If the element is an unary operation, the code determines
         # which of the element's children is a component or operation
         # and which are attributes. After determining this, the Python
@@ -68,7 +74,7 @@ class Parser:
             un_op = self.makeUnary(elem, attrs)
             un_op.body = self.getRootElem(comp1)
             return un_op
-        
+
     def isComp(self, elem):
         """
         This function returns True if the element's tag identifies
@@ -110,7 +116,7 @@ class Parser:
         it returns False.
         """
         tag = elem.tag
-        if tag == "difference" or tag == "intersection" or tag == "union":
+        if tag == "difference" or tag == "intersection":
             return True
         else:
             return False
@@ -130,6 +136,35 @@ class Parser:
             return ctor()
         except AttributeError:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
+    def isNary(self, elem):
+      """
+      If the element's tag identifies it as a Nary
+      operation, this function returns True. Otherwise,
+      it returns False.
+      """
+      tag = elem.tag
+      if tag == "union":
+          return True
+      else:
+          return False
+
+    def makeNary(self, elem):
+      """
+      Using the element's tag, this function creates the
+      correct basic Python object, which is then returned.
+      If the element is not (yet) implemented in this
+      repository, a NotImplementedError is raised.
+      """
+      if not self.containsop:
+          self.containsop = True
+      tag = elem.tag.title()
+      try:
+          ctor = getattr(operations, tag)
+          return ctor()
+      except AttributeError:
+          raise NotImplementedError("{0!s} is not implemented".format(tag))
+
+
 
     def isUnary(self, elem):
         """
@@ -215,7 +250,7 @@ class Parser:
             scadfile.write(self.printTorusModule())
         # This for loop causes any root elements that do not have
         # children to not be printed to the OpenSCAD file.
-        for elem in self.rootelems: 
+        for elem in self.rootelems:
             if self.containsop and elem.isComp():
                 continue
             scadfile.write("{0!s}".format(elem))
