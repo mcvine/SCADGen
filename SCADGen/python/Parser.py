@@ -56,7 +56,7 @@ class Parser:
             nary_op = self.makeNary(elem)
             for child in children:
                 nary_op.comps.extend(self.getRootElem(child))
-            return nary_op        
+            return nary_op
         # If the element is an unary operation, the code determines
         # which of the element's children is a component or operation
         # and which are attributes. After determining this, the Python
@@ -136,6 +136,7 @@ class Parser:
             return ctor()
         except AttributeError:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
+            
     def isNary(self, elem):
       """
       If the element's tag identifies it as a Nary
@@ -198,6 +199,7 @@ class Parser:
         """
         tag = elem.tag
         assert(len(attrs) > 0)
+        print(attrs)
         if tag == "dilation":
             assert(attrs[0].tag == "scale")
             return operations.Dilation(float(attrs[0].text))
