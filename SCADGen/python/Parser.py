@@ -55,7 +55,7 @@ class Parser:
             children = list(elem)
             nary_op = self.makeNary(elem)
             for child in children:
-                nary_op.comps.extend(self.getRootElem(child))
+                nary_op.comps.append(self.getRootElem(child))
             return nary_op
         # If the element is an unary operation, the code determines
         # which of the element's children is a component or operation
