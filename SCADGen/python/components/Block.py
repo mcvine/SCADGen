@@ -12,13 +12,10 @@ class Block(Component):
         accessed with the xml.etree.ElementTree.Element
         object, xml_elem.
         """
-        diagonal = xml_elem.get("diagonal")
-        diagonal = diagonal[1:-1]
-        comma1 = diagonal.find(",")
-        comma2 = diagonal[comma1+1:].find(",") + comma1 + 1
-        self.x = float(diagonal[:comma1].replace(" ", ""))
-        self.y = float(diagonal[comma1+1:comma2].replace(" ", ""))
-        self.z = float(diagonal[comma2+1:].replace(" ", ""))
+        from . import unit_parser, length_unit
+        _convert = lambda x: unit_parser.parse(xml_elem.get(x))/length_unit
+        thickness, width, height = map(_convert, "thickness width height".split())
+        self.x, self.y, self.z = thickness, width, height
         return 
 
     def __str__(self):
