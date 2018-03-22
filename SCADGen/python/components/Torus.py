@@ -12,8 +12,10 @@ class Torus(Component):
         The contents of this line are acessed through
         the xml.etree.ElementTree.Element object, xml_elem.
         """
-        self.major = float(xml_elem.get("major"))
-        self.minor = float(xml_elem.get("minor"))
+        from * import unit_parser, length_unit
+        _convert = lambda x: float(unit_parser.parse(xml_elem.get(x))/length_unit)
+        self.major, self.minor = map(_convert, "major minor".split())
+        return
 
     def __str__(self):
         """
