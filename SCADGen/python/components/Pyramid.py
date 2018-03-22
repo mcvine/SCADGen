@@ -13,9 +13,9 @@ class Pyramid(Component):
         xml_elem. This will likely need to be changed later
         once the "formal" xml format is added to pyre.
         """
-        self.edgeX = float(xml_elem.get("edgeX"))
-        self.edgeY = float(xml_elem.get("edgeY"))
-        self.height = float(xml_elem.get("height"))
+        from . import unit_parser, length_unit
+        _convert = lambda x: float(unit_parser.parse(xml_elem.get(x))/length_unit)
+        self.x, self.y, self.z = map(_convert, "thickness width height".split())
         return;
 
     def __str__(self):
@@ -27,7 +27,7 @@ class Pyramid(Component):
     points=[ [{0!s},{1!s},-{2!s}], [{0!s},-{1!s},-{2!s}],
              [-{0!s},-{1!s},-{2!s}], [-{0!s},{1!s},-{2!s}], [0,0,0] ],
     faces=[ [0,1,4], [1,2,4], [2,3,4], [3,0,4], [1,0,3], [2,1,3] ]
-);""".format((self.edgeX/2), (self.edgeY/2), self.height)
+);""".format((self.x/2), (self.y/2), self.z)
 
     def __eq__(self, rhs):
         """
@@ -35,7 +35,7 @@ class Pyramid(Component):
         """
         if type(self) != type(rhs):
             return False
-        elif self.edgeX != rhs.edgeX or self.edgeY != rhs.edgeY or self.height != rhs.height:
+        elif self.x != rhs.x or self.y != rhs.y or self.z != rhs.z:
             return False
         else:
             return True
