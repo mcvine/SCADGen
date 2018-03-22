@@ -10,4 +10,4 @@ class Nary:
 
     def addComp(self, component):
         self.comps.append(component)
-        self.num_comps++
+        self.num_comps += 1
