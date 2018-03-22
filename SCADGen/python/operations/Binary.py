@@ -1,8 +1,11 @@
-class Binary:
+from __future__ import absolute_import
+
+from .Nary import Nary
+
+class Binary(Nary):
 
     def __init__(self):
-        self.comp1 = None
-        self.comp2 = None
+        Nary.__init__()
         return
 
     def isComp(self):
@@ -18,3 +21,9 @@ class Binary:
             return False
         else:
             return True
+
+    def addComp(self, component):
+        if self.num_comps < 2:
+            super(Binary, self).addComp(component)
+        else:
+            raise AttributeError("A binary operation cannot have more than 2 components.")
