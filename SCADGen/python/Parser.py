@@ -67,7 +67,7 @@ class Parser:
             comp1 = None
             attrs = []
             for child in elem:
-                if self.isBinary(child) or self.isComp(child) or self.isUnary(child):
+                if self.isBinary(child) or self.isComp(child) or self.isUnary(child) or self.isNary(child):
                     comp1 = child
                 else:
                     attrs.append(child)
@@ -199,7 +199,6 @@ class Parser:
         """
         tag = elem.tag
         assert(len(attrs) > 0)
-        print(attrs)
         if tag == "dilation":
             assert(attrs[0].tag == "scale")
             return operations.Dilation(float(attrs[0].text))
