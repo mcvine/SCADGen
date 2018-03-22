@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
 from .Transformation import Transformation
-import xml.etree.ElementTree at ET
+import xml.etree.ElementTree as ET
 
 class Translation(Transformation):
 

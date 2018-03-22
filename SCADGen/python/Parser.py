@@ -207,17 +207,17 @@ class Parser:
             raise NotImplementedError("Reversal is not yet implemented")
         elif tag == "rotation":
             assert(len(attrs) >= 2)
-            assert((attrs[0].tag == "angle" and attrs[1].tag == "vector")
-                or (attrs[0].tag == "vector" and attrs[1].tag == "angle"))
+            assert((attrs[0].tag == "angle" and attrs[1].tag == "axis")
+                or (attrs[0].tag == "axis" and attrs[1].tag == "angle"))
             angle = None
-            vector = None
+            axis = None
             if attrs[0].tag == "angle":
                 angle = attrs[0]
-                vector = attrs[1]
+                axis = attrs[1]
             else:
                 angle = attrs[1]
-                vector = attrs[0]
-            return operations.Rotation(angle.text, vector)
+                axis = attrs[0]
+            return operations.Rotation(angle.text, axis)
         elif tag == "translation":
             assert(attrs[0].tag == "vector")
             return operations.Translation(attrs[0])
