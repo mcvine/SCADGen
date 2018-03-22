@@ -3,7 +3,7 @@
 <geometry>
 
     <translation>
-        <sphere radius="5"/>
+        <sphere radius="5.*cm"/>
         <vector>(10, 0, 0)</vector>
     </translation>
 

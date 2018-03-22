@@ -3,8 +3,8 @@
 <geometry>
 
     <union>
-        <sphere radius="2.5"/>
-        <cylinder height="5" radius="1"/>
+        <sphere radius="2.5*cm"/>
+        <cylinder height="5.*cm" radius="1.*cm"/>
     </union>
 
 </geometry>

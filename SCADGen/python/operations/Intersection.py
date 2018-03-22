@@ -1,15 +1,15 @@
 from __future__ import absolute_import
 
-from .Binary import Binary
+from .Nary import Nary
 
-class Intersection(Binary):
+class Intersection(Nary):
 
     def __init__(self):
         """
         Stores the components for the Intersection
         in member variables self.comp1 self.comp2.
         """
-        Binary.__init__(self)
+        Nary.__init__(self)
         return
 
     def __str__(self):
@@ -17,7 +17,8 @@ class Intersection(Binary):
         Returns a string containing the SCAD
         code for implementing an intersection.
         """
-        return """intersection() {{
-    {0!s}
-    {1!s}
-}}""".format(self.comp1, self.comp2)
+        tmp_str = """intersection() {{\n"""
+        for comp in self.comps:
+            tmp_str = tmp_str + """{0!s}\n""".format(comp)
+        tmp_str = tmp_str + """}}"""
+        return tmp_str

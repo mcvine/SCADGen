@@ -2,6 +2,6 @@
 
 <geometry>
 
-    <sphere radius="2.5"/>
+    <sphere radius="2.5*cm"/>
 
 </geometry>

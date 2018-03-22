@@ -2,6 +2,6 @@
 
 <geometry>
 
-    <pyramid edgeX="5" edgeY="5" height="10"/>
+    <pyramid thickness="5.*cm" width="5.*cm" height="10.*cm"/>
 
 </geometry>

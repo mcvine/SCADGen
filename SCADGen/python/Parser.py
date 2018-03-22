@@ -47,15 +47,15 @@ class Parser:
         # this function. The operation is then returned.
         elif self.isBinary(elem):
             children = list(elem)
-            bin_op = self.makeBinary(elem)
-            bin_op.comp1 = self.getRootElem(children[0])
-            bin_op.comp2 = self.getRootElem(children[1])
+            bin_op = self.makeNary(elem)
+            bin_op.addComp(self.getRootElem(children[0]))
+            bin_op.addComp(self.getRootElem(children[1]))
             return bin_op
         elif self.isNary(elem):
             children = list(elem)
             nary_op = self.makeNary(elem)
             for child in children:
-                nary_op.comps.append(self.getRootElem(child))
+                nary_op.addComp(self.getRootElem(child))
             return nary_op
         # If the element is an unary operation, the code determines
         # which of the element's children is a component or operation
@@ -116,26 +116,26 @@ class Parser:
         it returns False.
         """
         tag = elem.tag
-        if tag == "difference" or tag == "intersection":
+        if tag == "difference":
             return True
         else:
             return False
 
-    def makeBinary(self, elem):
+    #def makeBinary(self, elem):
         """
         Using the element's tag, this function creates the
         correct basic Python object, which is then returned.
         If the element is not (yet) implemented in this
         repository, a NotImplementedError is raised.
         """
-        if not self.containsop:
+        """if not self.containsop:
             self.containsop = True
         tag = elem.tag.title()
         try:
             ctor = getattr(operations, tag)
             return ctor()
         except AttributeError:
-            raise NotImplementedError("{0!s} is not implemented".format(tag))
+            raise NotImplementedError("{0!s} is not implemented".format(tag))"""
             
     def isNary(self, elem):
       """
@@ -144,7 +144,7 @@ class Parser:
       it returns False.
       """
       tag = elem.tag
-      if tag == "union":
+      if tag == "union" or tag == "intersection":
           return True
       else:
           return False
@@ -164,8 +164,6 @@ class Parser:
           return ctor()
       except AttributeError:
           raise NotImplementedError("{0!s} is not implemented".format(tag))
-
-
 
     def isUnary(self, elem):
         """
@@ -219,10 +217,10 @@ class Parser:
             else:
                 angle = attrs[1]
                 vector = attrs[0]
-            return operations.Rotation(float(angle.text), vector.text)
+            return operations.Rotation(angle.text, vector)
         elif tag == "translation":
             assert(attrs[0].tag == "vector")
-            return operations.Translation(attrs[0].text)
+            return operations.Translation(attrs[0])
         else:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
 
