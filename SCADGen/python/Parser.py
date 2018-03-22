@@ -105,6 +105,8 @@ class Parser:
             raise NotImplementedError("Generalized Cone is not yet implemented")
         try:
             ctor = getattr(components, tag)
+            if tag == "Torus":
+                self.containsTorus = True
             return ctor(elem)
         except AttributeError:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
