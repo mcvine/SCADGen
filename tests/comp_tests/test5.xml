@@ -1,0 +1,47 @@
+<geometry>
+  <difference>
+    <cylinder height="50" radius="55.0"/>
+    <union>
+      <translation>
+	<union>
+	  <rotation>
+	    <rotation>
+	      <pyramid edgeX="10" edgeY="10" height="55.0"/>
+	      <angle>90</angle>
+	      <vector>(0,1,0)</vector>
+	    </rotation>
+	    <angle>30</angle>
+	    <vector>(0,0,1)</vector>
+	  </rotation>
+	  <rotation>
+	    <rotation>
+	      <pyramid edgeX="10" edgeY="10" height="55.0"/>
+	      <angle>90</angle>
+	      <vector>(0,1,0)</vector>
+	    </rotation>
+	    <angle>15</angle>
+	    <vector>(0,0,1)</vector>
+	  </rotation>
+	  <rotation>
+	    <rotation>
+	      <pyramid edgeX="10" edgeY="10" height="55.0"/>
+	      <angle>90</angle>
+	      <vector>(0,1,0)</vector>
+	    </rotation>
+	    <angle>45</angle>
+	    <vector>(0,0,1)</vector>
+	  </rotation>
+
+	</union>
+	<vector>(0,0,25)</vector>
+      </translation>
+      <union>
+	<cylinder height="70" radius="25.0"/>
+	<translation>
+	  <block height="110*mm" width="110*mm" thickness="110*mm"/>
+	  <vector>(0,-55,0)</vector>
+	</translation>
+      </union>
+    </union>
+  </difference>
+</geometry>
