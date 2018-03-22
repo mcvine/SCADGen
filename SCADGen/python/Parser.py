@@ -220,7 +220,7 @@ class Parser:
             return operations.Rotation(float(angle.text), vector.text)
         elif tag == "translation":
             assert(attrs[0].tag == "vector")
-            return operations.Translation(attrs[0].text)
+            return operations.Translation(attrs[0])
         else:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
 
