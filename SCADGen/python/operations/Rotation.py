@@ -12,14 +12,15 @@ class Rotation(Transformation):
         self.angle.
         """
         Transformation.__init__(self)
-        from . import unit_parser, length_unit
-        _convert = lambda x: unit_parser.parse(vector.get(x))/length_unit
-        beam, transversal, vertical = map(_convert, "beam transversal vertical".split())
+        from . import unit_parser, angle_unit
+        beam = vector.get("beam")
+        transversal = vector.get("transversal")
+        vertical = vector.get("vertical")
         self.vector = []
         self.vector.append(beam)
         self.vector.append(transversal)
         self.vector.append(vertical)
-        self.angle = unit_parser.parse(angle)/length_unit
+        self.angle = unit_parser.parse(angle)/angle_unit
         """v = vector[1:-1]
         comma1 = v.find(",")
         comma2 = v[comma1+1:].find(",") + comma1 + 1
