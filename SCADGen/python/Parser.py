@@ -217,7 +217,7 @@ class Parser:
             else:
                 angle = attrs[1]
                 vector = attrs[0]
-            return operations.Rotation(float(angle.text), vector.text)
+            return operations.Rotation(angle.text, vector)
         elif tag == "translation":
             assert(attrs[0].tag == "vector")
             return operations.Translation(attrs[0])
