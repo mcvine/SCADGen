@@ -52,7 +52,7 @@ def test_difference_Comp2Bottom():
 
 def test_intersection_Comp1Radius():
     elem1 = et.Element("sphere", { "radius" : "5" })
-    elem2 = et.Element("block", { "diagonal" : "(5, 5, 1)" })
+    elem2 = et.Element("block", { "width" : "5.*cm", "height" : "7.*cm", "thickness": "1.*mm" })
     op = operations.Intersection()
     op.comp1 = components.Sphere(elem1)
     op.comp2 = components.Block(elem2)
@@ -60,7 +60,7 @@ def test_intersection_Comp1Radius():
 
 def test_intersection_Comp2Diag():
     elem1 = et.Element("sphere", { "radius" : "5" })
-    elem2 = et.Element("block", { "diagonal" : "(5, 5, 1)" })
+    elem2 = et.Element("block", { "width" : "5.*mm", "height" : "1.*mm", "thickness": "5.*mm" })
     op = operations.Intersection()
     op.comp1 = components.Sphere(elem1)
     op.comp2 = components.Block(elem2)

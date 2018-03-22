@@ -3,7 +3,7 @@
 <geometry>
 
     <dilation>
-        <block diagonal="(1, 1, 1)"/>
+        <block width="5*cm" height="7*cm" thickness="1*mm" />
         <scale>5</scale>
     </dilation>
 

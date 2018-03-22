@@ -3,7 +3,7 @@
 <geometry>
 
     <rotation>
-        <block diagonal="(5, 5, 5)"/>
+        <block width="5*cm" height="7*cm" thickness="1*mm" />
         <angle>45</angle>
         <vector>(0, 0, 1)</vector>
     </rotation>

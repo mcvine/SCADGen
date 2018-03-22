@@ -8,7 +8,7 @@
             <cylinder height="10" radius="5"/>
         </difference>
         <rotation>
-            <block diagonal="(20, 20, 1)"/>
+            <block thickness="20.*mm" width="20*mm" height="1.*mm"/>
             <angle>45</angle>
             <vector>(1, 0, 0)</vector>
         </rotation>

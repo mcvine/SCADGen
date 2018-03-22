@@ -11,9 +11,9 @@ import operations
 import xml.etree.ElementTree as et
 
 def test_block_str():
-    elem1 = et.Element("block", { "diagonal" : "(5, 5, 5)" })
+    elem1 = et.Element("block", { "width" : "5.*mm", "height" : "7.*mm", "thickness": "1.*mm" })
     test = components.Block(elem1)
-    sol = "cube([5.0, 5.0, 5.0]);"
+    sol = "cube([1.0, 5.0, 7.0]);"
     assert("{0!s}".format(test) == sol)
 
 def test_cone_str():
@@ -65,7 +65,7 @@ def test_difference_str():
     assert("{0!s}".format(test) == sol)
 
 def test_dilation_str():
-    elem = et.Element("block", { "diagonal" : "(1, 1, 1)" })
+    elem = et.Element("block", { "width" : "1.*mm", "height" : "1.*mm", "thickness": "1.*mm" })
     test = operations.Dilation(5)
     test.body = components.Block(elem)
     sol = """scale([5, 5, 5]) {
@@ -75,7 +75,7 @@ def test_dilation_str():
 
 def test_intersection_str():
     elem1 = et.Element("sphere", { "radius" : "5" })
-    elem2 = et.Element("block", { "diagonal" : "(5, 5, 1)" })
+    elem2 = et.Element("block", { "width" : "5.*mm", "height" : "1.*mm", "thickness": "5.*mm" })
     test = operations.Intersection()
     test.comp1 = components.Sphere(elem1)
     test.comp2 = components.Block(elem2)
@@ -95,7 +95,7 @@ def test_reflection_str():
     assert("{0!s}".format(test) == sol)
 
 def test_rotation_str():
-    elem = et.Element("block", { "diagonal" : "(5, 5, 5)" })
+    elem = et.Element("block", { "width" : "5.*mm", "height" : "5.*mm", "thickness": "5.*mm" })
     test = operations.Rotation(45, "(0, 0, 1)")
     test.body = components.Block(elem)
     sol = """rotate(45, [0.0, 0.0, 1.0]) {

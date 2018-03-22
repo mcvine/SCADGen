@@ -14,7 +14,7 @@ def test_block():
     fname = os.path.abspath("../unittests/components/Block.xml")
     p = Parser(fname)
     test = p.rootelems[0]
-    sol = [5, 5, 5]
+    sol = [1., 50., 70.]
     assert(test.x == sol[0] and test.y == sol[1] and test.z == sol[2])
 
 def test_cone():
