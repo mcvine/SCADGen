@@ -14,7 +14,7 @@ class Pyramid(Component):
         once the "formal" xml format is added to pyre.
         """
         from . import unit_parser, length_unit
-        _convert = lambda x: float(unit_parser.parse(xml_elem.get(x))/length_unit)
+        _convert = lambda x: unit_parser.parse(xml_elem.get(x))/length_unit
         self.x, self.y, self.z = map(_convert, "thickness width height".split())
         return;
 

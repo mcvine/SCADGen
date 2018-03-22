@@ -12,7 +12,7 @@ class Cylinder(Component):
         accessed using the xml.etree.ElementTree.Element object, xml_elem.
         """
         from . import unit_parser, length_unit
-        _convert = lambda x: float(unit_parser.parse(xml_elem.get(x))/length_unit)
+        _convert = lambda x: unit_parser.parse(xml_elem.get(x))/length_unit
         self.radius, self.height = map(_convert, "radius height".split())
         return
 

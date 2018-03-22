@@ -5,7 +5,7 @@ from .Nary import Nary
 class Binary(Nary):
 
     def __init__(self):
-        Nary.__init__()
+        Nary.__init__(self)
         return
 
     def isComp(self):
@@ -24,6 +24,6 @@ class Binary(Nary):
 
     def addComp(self, component):
         if self.num_comps < 2:
-            super(Binary, self).addComp(component)
+            Nary.addComp(self, component)
         else:
             raise AttributeError("A binary operation cannot have more than 2 components.")

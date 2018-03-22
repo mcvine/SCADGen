@@ -13,7 +13,7 @@ class Sphere(Component):
         the xml.etree.ElementTree.Element object, xml_elem.
         """
         from . import unit_parser, length_unit
-        self.radius = float(unit_parser.parse(xml_elem.get("radius"))/length_unit)
+        self.radius = unit_parser.parse(xml_elem.get("radius"))/length_unit
         return 
 
     def __str__(self):

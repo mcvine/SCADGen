@@ -13,7 +13,7 @@ class Torus(Component):
         the xml.etree.ElementTree.Element object, xml_elem.
         """
         from . import unit_parser, length_unit
-        _convert = lambda x: float(unit_parser.parse(xml_elem.get(x))/length_unit)
+        _convert = lambda x: unit_parser.parse(xml_elem.get(x))/length_unit
         self.major, self.minor = map(_convert, "major minor".split())
         return
 
