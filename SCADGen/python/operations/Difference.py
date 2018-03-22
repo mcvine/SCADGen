@@ -21,4 +21,4 @@ class Difference(Binary):
         return """difference() {{
     {0!s}
     {1!s}
-}}""".format(self.comp1, self.comp2)
+}}""".format(self.comps[0], self.comps[1])

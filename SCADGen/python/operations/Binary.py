@@ -17,7 +17,7 @@ class Binary(Nary):
         """
         if type(self) != type(rhs):
             return False
-        elif self.comp1 != rhs.comp1 or self.comp2 != rhs.comp2:
+        elif self.comps[0] != rhs.comps[0] or self.comps[1] != rhs.comps[1]:
             return False
         else:
             return True
