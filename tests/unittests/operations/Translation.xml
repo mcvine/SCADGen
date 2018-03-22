@@ -4,7 +4,7 @@
 
     <translation>
         <sphere radius="5.*cm"/>
-        <vector>(10, 0, 0)</vector>
+        <vector beam="10.*cm" transversal="0.*cm" vertical="0.*cm"/>
     </translation>
 
 </geometry>
