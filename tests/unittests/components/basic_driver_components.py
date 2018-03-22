@@ -1,6 +1,6 @@
 """
-$ python basic_driver_operations.py             # run all tests
-$ python basic_driver_operations.py block       # run block tests
+$ python basic_driver_components.py             # run all tests
+$ python basic_driver_components.py block       # run block tests
 """
 
 from __future__ import absolute_import
