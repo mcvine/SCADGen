@@ -3,8 +3,8 @@
 <geometry>
 
     <intersection>
-        <sphere radius="5"/>
-	<block width="5*cm" height="7*cm" thickness="1*mm" />
+        <sphere radius="5.*cm"/>
+	<block width="5.*cm" height="7.*cm" thickness="1.*mm" />
     </intersection>
 
 </geometry>

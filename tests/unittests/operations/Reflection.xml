@@ -3,7 +3,7 @@
 <geometry>
 
     <reflection>
-        <cylinder height="5" radius="2.5"/>
+        <cylinder height="5.*cm" radius="2.5*cm"/>
         <vector>(1, 1, 1)</vector>
     </reflection>
 
