@@ -1,5 +1,9 @@
 *~
+*.swp
 *.pyc
-*.scad
+.cache/
+.coverage
+/tests/**/*.scad
+!parser_sol.scad
 /build
 /conda

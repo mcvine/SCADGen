@@ -2,6 +2,6 @@
 
 <geometry>
 
-    <block diagonal="(5, 5, 5)"/>
+    <block width="5*cm" height="7*cm" thickness="1*mm" />
 
 </geometry>

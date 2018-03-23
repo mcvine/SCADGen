@@ -4,10 +4,10 @@
 
     <translation>
         <difference>
-            <cylinder height="5" radius="5"/>
-            <cylinder height="5" radius="2.5"/>
+            <cylinder height="5.*cm" radius="5.*cm"/>
+            <cylinder height="5.*cm" radius="2.5*cm"/>
         </difference>
-        <vector>(2.5, 3.2, 4.8)</vector>
+        <vector beam="2.5*cm" transversal="3.2*cm" vertical="4.8*cm"/>
     </translation>
 
 </geometry>

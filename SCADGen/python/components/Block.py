@@ -12,13 +12,9 @@ class Block(Component):
         accessed with the xml.etree.ElementTree.Element
         object, xml_elem.
         """
-        diagonal = xml_elem.get("diagonal")
-        diagonal = diagonal[1:-1]
-        comma1 = diagonal.find(",")
-        comma2 = diagonal[comma1+1:].find(",") + comma1 + 1
-        self.x = float(diagonal[:comma1].replace(" ", ""))
-        self.y = float(diagonal[comma1+1:comma2].replace(" ", ""))
-        self.z = float(diagonal[comma2+1:].replace(" ", ""))
+        _convert = lambda x: self._convertToLength(xml_elem.get(x))
+        thickness, width, height = map(_convert, "thickness width height".split())
+        self.x, self.y, self.z = thickness, width, height
         return 
 
     def __str__(self):
@@ -27,3 +23,14 @@ class Block(Component):
         code for this block/cube object.
         """
         return "cube([{0!s}, {1!s}, {2!s}]);".format(self.x, self.y, self.z)
+
+    def __eq__(self, rhs):
+        """
+        Returns true if two components are equal Blocks. Returns false otherwise.
+        """
+        if type(self) != type(rhs):
+            return False
+        elif self.x != rhs.x or self.y != rhs.y or self.z != rhs.z:
+            return False
+        else:
+            return True

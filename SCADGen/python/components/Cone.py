@@ -12,9 +12,8 @@ class Cone(Component):
         are accessed with the xml.etree.ElementTree.Element
         object, xml_elem.
         """
-        self.bottom_radius = xml_elem.get("bottomRadius")
-        self.top_radius = xml_elem.get("topRadius")
-        self.height = xml_elem.get("height")
+        _convert = lambda x: self._convertToLength(xml_elem.get(x))
+        self.bottom_radius, self.top_radius, self.height = map(_convert, "bottomRadius topRadius height".split())
         return
 
     def __str__(self):
@@ -24,3 +23,14 @@ class Cone(Component):
         """
         return "cylinder(h = {0!s}, r1 = {1!s}, r2 = {2!s}, $fn=100);".format(
             self.height, self.bottom_radius, self.top_radius)
+
+    def __eq__(self, rhs):
+        """
+        Returns true if the two Cone components are equal. Returns false otherwise.
+        """
+        if type(self) != type(rhs):
+            return False
+        elif self.bottom_radius != rhs.bottom_radius or self.top_radius != rhs.top_radius or self.height != rhs.height:
+            return False
+        else:
+            return True

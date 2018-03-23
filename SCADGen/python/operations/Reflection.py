@@ -28,3 +28,14 @@ class Reflection(Transformation):
         return """mirror([{0!s}, {1!s}, {2!s}]) {{
     {3!s}
 }}""".format(self.vector[0], self.vector[1], self.vector[2], self.body)
+
+    def __eq__(self, rhs):
+        """
+        Returns true if the two Reflection objects are equal. Returns false otherwise.
+        """
+        if type(self) != type(rhs):
+            return False
+        elif self.body != rhs.body or self.vector != rhs.vector:
+            return False
+        else:
+            return True

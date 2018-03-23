@@ -3,8 +3,8 @@
 <geometry>
 
     <translation>
-        <sphere radius="5"/>
-        <vector>(10, 0, 0)</vector>
+        <sphere radius="5.*cm"/>
+        <vector beam="10.*cm" transversal="0.*cm" vertical="0.*cm"/>
     </translation>
 
 </geometry>

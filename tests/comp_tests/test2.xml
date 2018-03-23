@@ -11,51 +11,51 @@
                             <difference>
                                 <difference>
                                     <difference>
-                                        <cylinder height="20" radius="30"/>
-                                        <cylinder height="20" radius="10"/>
+                                        <cylinder height="20.*mm" radius="30.*mm"/>
+                                        <cylinder height="20.*mm" radius="10.*mm"/>
                                     </difference>
-                                <block diagonal="(30, 2.5, 20)"/>
+                                <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
                                 </difference>
                                 <rotation>
-                                    <block diagonal="(30, 2.5, 20)"/>
-                                    <angle>45</angle>
-                                    <vector>(0, 0, 1)</vector>
+                                    <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                                    <angle>45*deg</angle>
+                                    <axis beam="0.0" transversal="0.0" vertical="1.0"/>
                                 </rotation>
                             </difference>
                             <rotation>
-                                <block diagonal="(30, 2.5, 20)"/>
-                                <angle>90</angle>
-                                <vector>(0, 0, 1)</vector>
+                                <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                                <angle>90*deg</angle>
+                                <axis beam="0.0" transversal="0.0" vertical="1.0"/>
                             </rotation>
                         </difference>
                         <rotation>
-                            <block diagonal="(30, 2.5, 20)"/>
-                            <angle>135</angle>
-                            <vector>(0, 0, 1)</vector>
+                            <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                            <angle>135*deg</angle>
+                            <axis beam="0.0" transversal="0.0" vertical="1.0"/>
                         </rotation>
                     </difference>
                     <rotation>
-                        <block diagonal="(30, 2.5, 20)"/>
-                        <angle>180</angle>
-                        <vector>(0, 0, 1)</vector>
+                        <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                        <angle>180*deg</angle>
+                        <axis beam="0.0" transversal="0.0" vertical="1.0"/>
                     </rotation>
                 </difference>
                 <rotation>
-                    <block diagonal="(30, 2.5, 20)"/>
-                    <angle>225</angle>
-                    <vector>(0, 0, 1)</vector>
+                    <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                    <angle>225*deg</angle>
+                    <axis beam="0.0" transversal="0.0" vertical="1.0"/>
                 </rotation>
             </difference>
             <rotation>
-                <block diagonal="(30, 2.5, 20)"/>
-                <angle>270</angle>
-                <vector>(0, 0, 1)</vector>
+                <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                <angle>270*deg</angle>
+                <axis beam="0.0" transversal="0.0" vertical="1.0"/>
             </rotation>
         </difference>
         <rotation>
-            <block diagonal="(30, 2.5, 20)"/>
-            <angle>315</angle>
-            <vector>(0, 0, 1)</vector>
+            <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+            <angle>315*deg</angle>
+            <axis beam="0.0" transversal="0.0" vertical="1.0"/>
         </rotation>
     </difference>
 

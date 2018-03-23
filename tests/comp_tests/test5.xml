@@ -1,0 +1,47 @@
+<geometry>
+  <difference>
+    <cylinder height="50.*mm" radius="55.0*mm"/>
+    <union>
+      <translation>
+	<union>
+	  <rotation>
+	    <rotation>
+	      <pyramid thickness="10.*mm" width="10.*mm" height="55.0*mm"/>
+	      <angle>90*deg</angle>
+              <axis beam="0.0" transversal="1.0" vertical="0.0"/>
+	    </rotation>
+	    <angle>30*deg</angle>
+            <axis beam="0.0" transversal="0.0" vertical="1.0"/>
+	  </rotation>
+	  <rotation>
+	    <rotation>
+	      <pyramid thickness="10.*mm" width="10.*mm" height="55.0*mm"/>
+	      <angle>90*deg</angle>
+              <axis beam="0.0" transversal="1.0" vertical="0.0"/>
+	    </rotation>
+	    <angle>15*deg</angle>
+            <axis beam="0.0" transversal="0.0" vertical="1.0"/>
+	  </rotation>
+	  <rotation>
+	    <rotation>
+	      <pyramid thickness="10.*mm" width="10.*mm" height="55.0*mm"/>
+	      <angle>90*deg</angle>
+              <axis beam="0.0" transversal="1.0" vertical="0.0"/>
+	    </rotation>
+	    <angle>45*deg</angle>
+            <axis beam="0.0" transversal="0.0" vertical="1.0"/>
+	  </rotation>
+
+	</union>
+	<vector beam="0.*m" transversal="0.*m" vertical="25.*mm"/>
+      </translation>
+      <union>
+	<cylinder height="70.*mm" radius="25.0*mm"/>
+	<translation>
+	  <block height="110*mm" width="110*mm" thickness="110*mm"/>
+	  <vector beam="0.*m" transversal="-55.*mm" vertical="0.*m"/>
+	</translation>
+      </union>
+    </union>
+  </difference>
+</geometry>

@@ -1,0 +1,13 @@
+<!DOCTYPE geometry>
+
+<geometry>
+
+    <union>
+        <cylinder height="5" radius="2.5"/>
+        <translation>
+            <cylinder height="10" radius="1.5"/>
+            <vector>(0, 0, -2.5)</vector>
+        </translation>
+    </union>
+
+</geometry>

@@ -2,6 +2,6 @@
 
 <geometry>
 
-    <cone height="5" topRadius="2" bottomRadius="4"/>
+    <cone height="5.*mm" topRadius="2.*mm" bottomRadius="4.*mm"/>
 
 </geometry>

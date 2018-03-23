@@ -2,6 +2,4 @@
 
 <geometry>
 
-    <torus major="10.*cm" minor="5.*cm"/>
-
 </geometry>

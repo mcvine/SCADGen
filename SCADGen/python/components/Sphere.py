@@ -12,7 +12,8 @@ class Sphere(Component):
         The contents of this line are acessed with
         the xml.etree.ElementTree.Element object, xml_elem.
         """
-        self.radius = xml_elem.get("radius")
+        _convert = lambda x: self._convertToLength(xml_elem.get(x))
+        self.radius = _convert("radius")
         return 
 
     def __str__(self):
@@ -21,3 +22,14 @@ class Sphere(Component):
         code for this sphere objec.
         """
         return "sphere(r = {0!s}, $fn=100);".format(self.radius)
+
+    def __eq__(self, rhs):
+        """
+        Returns true if the two Sphere components are equal. Returns false otherwise.
+        """
+        if type(self) != type(rhs):
+            return False
+        elif self.radius != rhs.radius:
+            return False
+        else:
+            return True

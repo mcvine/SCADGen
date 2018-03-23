@@ -11,8 +11,8 @@ class Cylinder(Component):
         the atrributes from its XML line. These attributes are
         accessed using the xml.etree.ElementTree.Element object, xml_elem.
         """
-        self.radius = xml_elem.get("radius")
-        self.height = xml_elem.get("height")
+        _convert = lambda x: self._convertToLength(xml_elem.get(x))
+        self.radius, self.height = map(_convert, "radius height".split())
         return
 
     def __str__(self):
@@ -21,3 +21,14 @@ class Cylinder(Component):
         code for this cylinder object.
         """
         return "cylinder(h = {0!s}, r = {1!s}, $fn=100);".format(self.height, self.radius)
+
+    def __eq__(self, rhs):
+        """
+        Returns true if the two Cylinder components are equal. Returns false otherwise.
+        """
+        if type(self) != type(rhs):
+            return False
+        elif self.radius != rhs.radius or self.height != rhs.height:
+            return False
+        else:
+            return True

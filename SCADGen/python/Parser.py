@@ -1,19 +1,7 @@
 from __future__ import absolute_import
 
-from components.Block import Block
-from components.Cone import Cone
-from components.Cylinder import Cylinder
-from components.Sphere import Sphere
-from components.Torus import Torus
-from operations.Binary import Binary
-from operations.Difference import Difference
-from operations.Dilation import Dilation
-from operations.Intersection import Intersection
-from operations.Reflection import Reflection
-from operations.Rotation import Rotation
-from operations.Transformation import Transformation
-from operations.Translation import Translation
-from operations.Union import Union
+import components
+import operations
 import xml.etree.ElementTree as ET
 
 class Parser:
@@ -59,10 +47,16 @@ class Parser:
         # this function. The operation is then returned.
         elif self.isBinary(elem):
             children = list(elem)
-            bin_op = self.makeBinary(elem)
-            bin_op.comp1 = self.getRootElem(children[0])
-            bin_op.comp2 = self.getRootElem(children[1])
+            bin_op = self.makeNary(elem)
+            bin_op.addComp(self.getRootElem(children[0]))
+            bin_op.addComp(self.getRootElem(children[1]))
             return bin_op
+        elif self.isNary(elem):
+            children = list(elem)
+            nary_op = self.makeNary(elem)
+            for child in children:
+                nary_op.addComp(self.getRootElem(child))
+            return nary_op
         # If the element is an unary operation, the code determines
         # which of the element's children is a component or operation
         # and which are attributes. After determining this, the Python
@@ -73,14 +67,14 @@ class Parser:
             comp1 = None
             attrs = []
             for child in elem:
-                if self.isBinary(child) or self.isComp(child) or self.isUnary(child):
+                if self.isBinary(child) or self.isComp(child) or self.isUnary(child) or self.isNary(child):
                     comp1 = child
                 else:
                     attrs.append(child)
             un_op = self.makeUnary(elem, attrs)
             un_op.body = self.getRootElem(comp1)
             return un_op
-        
+
     def isComp(self, elem):
         """
         This function returns True if the element's tag identifies
@@ -91,7 +85,7 @@ class Parser:
         returns False.
         """
         tag = elem.tag
-        if tag == "block" or tag == "cone" or tag == "cylinder" or tag == "sphere" or tag == "torus":
+        if tag == "block" or tag == "cone" or tag == "cylinder" or tag == "pyramid" or tag == "sphere" or tag == "torus":
             return True
         elif tag == "generalized-cone":
             raise NotImplementedError("Generalized Cone is not yet implemented")
@@ -106,21 +100,15 @@ class Parser:
         to be created is not (yet) implemented in this repository,
         a NotImplementedError is raised.
         """
-        tag = elem.tag
-        if tag == "block":
-            return Block(elem)
-        elif tag == "cone":
-            return Cone(elem)
-        elif tag == "cylinder":
-            return Cylinder(elem)
-        elif tag == "sphere":
-            return Sphere(elem)
-        elif tag == "torus":
-            self.containsTorus = True
-            return Torus(elem)
-        elif tag == "generalized-cone":            
+        tag = elem.tag.title()
+        if tag == "Generalized-Cone":
             raise NotImplementedError("Generalized Cone is not yet implemented")
-        else:
+        try:
+            ctor = getattr(components, tag)
+            if tag == "Torus":
+                self.containsTorus = True
+            return ctor(elem)
+        except AttributeError:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
 
     def isBinary(self, elem):
@@ -130,29 +118,54 @@ class Parser:
         it returns False.
         """
         tag = elem.tag
-        if tag == "difference" or tag == "intersection" or tag == "union":
+        if tag == "difference":
             return True
         else:
             return False
 
-    def makeBinary(self, elem):
+    #def makeBinary(self, elem):
         """
         Using the element's tag, this function creates the
         correct basic Python object, which is then returned.
         If the element is not (yet) implemented in this
         repository, a NotImplementedError is raised.
         """
-        if not self.containsop:
+        """if not self.containsop:
             self.containsop = True
-        tag = elem.tag
-        if tag == "difference":
-            return Difference()
-        elif tag == "intersection":
-            return Intersection()
-        elif tag == "union":
-            return Union()
-        else: 
-            raise NotImplementedError("{0!s} is not implemented".format(tag))
+        tag = elem.tag.title()
+        try:
+            ctor = getattr(operations, tag)
+            return ctor()
+        except AttributeError:
+            raise NotImplementedError("{0!s} is not implemented".format(tag))"""
+            
+    def isNary(self, elem):
+      """
+      If the element's tag identifies it as a Nary
+      operation, this function returns True. Otherwise,
+      it returns False.
+      """
+      tag = elem.tag
+      if tag == "union" or tag == "intersection":
+          return True
+      else:
+          return False
+
+    def makeNary(self, elem):
+      """
+      Using the element's tag, this function creates the
+      correct basic Python object, which is then returned.
+      If the element is not (yet) implemented in this
+      repository, a NotImplementedError is raised.
+      """
+      if not self.containsop:
+          self.containsop = True
+      tag = elem.tag.title()
+      try:
+          ctor = getattr(operations, tag)
+          return ctor()
+      except AttributeError:
+          raise NotImplementedError("{0!s} is not implemented".format(tag))
 
     def isUnary(self, elem):
         """
@@ -188,28 +201,28 @@ class Parser:
         assert(len(attrs) > 0)
         if tag == "dilation":
             assert(attrs[0].tag == "scale")
-            return Dilation(float(attrs[0].text))
+            return operations.Dilation(float(attrs[0].text))
         elif tag == "reflection":
             assert(attrs[0].tag == "vector")
-            return Reflection(attrs[0].text)
+            return operations.Reflection(attrs[0].text)
         elif tag == "reversal":
             raise NotImplementedError("Reversal is not yet implemented")
         elif tag == "rotation":
             assert(len(attrs) >= 2)
-            assert((attrs[0].tag == "angle" and attrs[1].tag == "vector")
-                or (attrs[0].tag == "vector" and attrs[1].tag == "angle"))
+            assert((attrs[0].tag == "angle" and attrs[1].tag == "axis")
+                or (attrs[0].tag == "axis" and attrs[1].tag == "angle"))
             angle = None
-            vector = None
+            axis = None
             if attrs[0].tag == "angle":
                 angle = attrs[0]
-                vector = attrs[1]
+                axis = attrs[1]
             else:
                 angle = attrs[1]
-                vector = attrs[0]
-            return Rotation(float(angle.text), vector.text)
+                axis = attrs[0]
+            return operations.Rotation(angle.text, axis)
         elif tag == "translation":
             assert(attrs[0].tag == "vector")
-            return Translation(attrs[0].text)
+            return operations.Translation(attrs[0])
         else:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
 
@@ -238,7 +251,7 @@ class Parser:
             scadfile.write(self.printTorusModule())
         # This for loop causes any root elements that do not have
         # children to not be printed to the OpenSCAD file.
-        for elem in self.rootelems: 
+        for elem in self.rootelems:
             if self.containsop and elem.isComp():
                 continue
             scadfile.write("{0!s}".format(elem))
