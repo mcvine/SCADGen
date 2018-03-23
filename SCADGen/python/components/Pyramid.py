@@ -13,8 +13,7 @@ class Pyramid(Component):
         xml_elem. This will likely need to be changed later
         once the "formal" xml format is added to pyre.
         """
-        from . import unit_parser, length_unit
-        _convert = lambda x: unit_parser.parse(xml_elem.get(x))/length_unit
+        _convert = lambda x: self._convertToLength(xml_elem.get(x))
         self.x, self.y, self.z = map(_convert, "thickness width height".split())
         return;
 

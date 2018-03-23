@@ -12,8 +12,7 @@ class Block(Component):
         accessed with the xml.etree.ElementTree.Element
         object, xml_elem.
         """
-        from . import unit_parser, length_unit
-        _convert = lambda x: unit_parser.parse(xml_elem.get(x))/length_unit
+        _convert = lambda x: self._convertToLength(xml_elem.get(x))
         thickness, width, height = map(_convert, "thickness width height".split())
         self.x, self.y, self.z = thickness, width, height
         return 

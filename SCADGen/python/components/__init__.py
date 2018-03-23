@@ -4,6 +4,10 @@ import pyre.units
 unit_parser = pyre.units.parser()
 length_unit = unit_parser.parse('1*mm')
 
+def remove_length_unit(x):
+    x + length_unit # make sure unit is right
+    return x/length_unit
+
 from .Block import Block
 from .Cone import Cone
 from .Cylinder import Cylinder

@@ -5,3 +5,8 @@ class Component:
 
     def isComp(self):
         return True
+
+    def _convertToLength(self, s):
+        "convert a string to a number without unit. the length unit is defined in __init__.py"
+        from . import unit_parser, remove_length_unit
+        return remove_length_unit(unit_parser.parse(s))

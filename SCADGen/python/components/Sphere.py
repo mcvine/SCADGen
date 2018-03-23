@@ -12,8 +12,8 @@ class Sphere(Component):
         The contents of this line are acessed with
         the xml.etree.ElementTree.Element object, xml_elem.
         """
-        from . import unit_parser, length_unit
-        self.radius = unit_parser.parse(xml_elem.get("radius"))/length_unit
+        _convert = lambda x: self._convertToLength(xml_elem.get(x))
+        self.radius = _convert("radius")
         return 
 
     def __str__(self):
