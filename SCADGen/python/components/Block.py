@@ -22,7 +22,7 @@ class Block(Component):
         Returns a string containing the SCAD
         code for this block/cube object.
         """
-        return "cube([{0!s}, {1!s}, {2!s}]);".format(self.x, self.y, self.z)
+        return "cube([{0!s}, {1!s}, {2!s}], center=true);".format(self.x, self.y, self.z)
 
     def __eq__(self, rhs):
         """
