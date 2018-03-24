@@ -13,19 +13,19 @@ import xml.etree.ElementTree as et
 def test_block_str():
     elem1 = et.Element("block", { "width" : "5.*mm", "height" : "7.*mm", "thickness": "1.*mm" })
     test = components.Block(elem1)
-    sol = "cube([1.0, 5.0, 7.0]);"
+    sol = "cube([1.0, 5.0, 7.0], center=true);"
     assert("{0!s}".format(test) == sol)
 
 def test_cone_str():
     elem1 = et.Element("cone", { "height" : "5", "topRadius" : "2", "bottomRadius" : "4" })
     test = components.Cone(elem1)
-    sol = "cylinder(h = 5.0, r1 = 4.0, r2 = 2.0, $fn=100);"
+    sol = "cylinder(h = 5.0, r1 = 4.0, r2 = 2.0, $fn=100, center=true);"
     assert("{0!s}".format(test) == sol)
 
 def test_cylinder_str():
     elem1 = et.Element("cylinder", { "height" : "5", "radius" : "2.5" })
     test = components.Cylinder(elem1)
-    sol = "cylinder(h = 5.0, r = 2.5, $fn=100);"
+    sol = "cylinder(h = 5.0, r = 2.5, $fn=100, center=true);"
     assert("{0!s}".format(test) == sol)
 
 def test_pyramid_str():
@@ -59,8 +59,8 @@ def test_difference_str():
     test.comp1 = comp1
     test.comp2 = comp2
     sol = """difference() {
-    cylinder(h = 5.0, r = 2.5, $fn=100);
-    cylinder(h = 5.0, r1 = 2.5, r2 = 0.0, $fn=100);
+    cylinder(h = 5.0, r = 2.5, $fn=100, center=true);
+    cylinder(h = 5.0, r1 = 2.5, r2 = 0.0, $fn=100, center=true);
 }"""
     assert("{0!s}".format(test) == sol)
 
@@ -69,7 +69,7 @@ def test_dilation_str():
     test = operations.Dilation(5)
     test.body = components.Block(elem)
     sol = """scale([5, 5, 5]) {
-    cube([1.0, 1.0, 1.0]);
+    cube([1.0, 1.0, 1.0], center=true);
 }"""
     assert("{0!s}".format(test) == sol)
 
@@ -81,7 +81,7 @@ def test_intersection_str():
     test.comp2 = components.Block(elem2)
     sol = """intersection() {
     sphere(r = 5.0, $fn=100);
-    cube([5.0, 5.0, 1.0]);
+    cube([5.0, 5.0, 1.0], center=true);
 }"""
     assert("{0!s}".format(test) == sol)
 
@@ -90,7 +90,7 @@ def test_reflection_str():
     test = operations.Reflection("(1, 1, 1)")
     test.body = components.Cylinder(elem)
     sol = """mirror([1.0, 1.0, 1.0]) {
-    cylinder(h = 5.0, r = 2.5, $fn=100);
+    cylinder(h = 5.0, r = 2.5, $fn=100, center=true);
 }"""
     assert("{0!s}".format(test) == sol)
 
@@ -99,7 +99,7 @@ def test_rotation_str():
     test = operations.Rotation(45, "(0, 0, 1)")
     test.body = components.Block(elem)
     sol = """rotate(45, [0.0, 0.0, 1.0]) {
-    cube([5.0, 5.0, 5.0]);
+    cube([5.0, 5.0, 5.0], center=true);
 }"""
     assert("{0!s}".format(test) == sol)
 
@@ -120,6 +120,6 @@ def test_union_str():
     test.comp2 = components.Cylinder(elem2)
     sol = """union() {
     sphere(r = 2.5, $fn=100);
-    cylinder(h = 5.0, r = 1.0, $fn=100);
+    cylinder(h = 5.0, r = 1.0, $fn=100, center=true);
 }"""
     assert("{0!s}".format(test) == sol)
