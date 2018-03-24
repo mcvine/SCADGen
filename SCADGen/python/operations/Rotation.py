@@ -13,9 +13,9 @@ class Rotation(Transformation):
         """
         Transformation.__init__(self)
         from . import unit_parser, angle_unit
-        beam = vector.get("beam")
-        transversal = vector.get("transversal")
-        vertical = vector.get("vertical")
+        beam = float(vector.get("beam"))
+        transversal = float(vector.get("transversal"))
+        vertical = float(vector.get("vertical"))
         self.vector = []
         self.vector.append(beam)
         self.vector.append(transversal)

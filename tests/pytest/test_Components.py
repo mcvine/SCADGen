@@ -28,25 +28,25 @@ def test_cylinder():
     fname = os.path.abspath("../unittests/components/Cylinder.xml")
     p = Parser(fname)
     test = p.rootelems[0]
-    sol = [5, 2.5]
+    sol = [50, 25]
     assert(test.radius == sol[1] and test.height == sol[0])
 
 def test_pyramid():
     fname = os.path.abspath("../unittests/components/Pyramid.xml")
     p = Parser(fname)
     test = p.rootelems[0]
-    sol = [5, 5, 10]
-    assert(test.edgeX == sol[0] and test.edgeY == sol[1] and test.height == sol[2])
+    sol = [50, 50, 100]
+    assert(test.x == sol[0] and test.y == sol[1] and test.z == sol[2])
 
 def test_sphere():
     fname = os.path.abspath("../unittests/components/Sphere.xml")
     p = Parser(fname)
     test = p.rootelems[0]
-    assert(test.radius == 2.5)
+    assert(test.radius == 25)
 
 def test_torus():
     fname = os.path.abspath("../unittests/components/Torus.xml")
     p = Parser(fname)
     test = p.rootelems[0]
-    sol = [10, 5]
+    sol = [100, 50]
     assert(test.major == sol[0] and test.minor == sol[1])

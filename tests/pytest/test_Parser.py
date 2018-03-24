@@ -13,11 +13,12 @@ import xml.etree.ElementTree as et
 
 def test_parsercore():
     fname = os.path.abspath("./test_xmls/parser_test.xml")
-    elem1 = et.Element("cylinder", { "radius" : "1.5", "height" : "10" })
-    elem2 = et.Element("cylinder", { "radius" : "2.5", "height" : "5" })
+    elem1 = et.Element("cylinder", { "radius" : "1.5*mm", "height" : "10.*mm" })
+    elem2 = et.Element("cylinder", { "radius" : "2.5*mm", "height" : "5.*mm" })
     comp1 = components.Cylinder(elem1)
     comp2 = components.Cylinder(elem2)
-    op = operations.Translation("(0, 0, -2.5)")
+    vector = et.Element("vector", { "beam" : "0.*m", "transversal" : "0.*m", "vertical" : "-2.5*mm" })
+    op = operations.Translation(vector)
     op.body = comp1
     sol = operations.Union()
     sol.comp1 = comp2
@@ -27,7 +28,7 @@ def test_parsercore():
     assert(test == sol)
 
 def test_isCompTrue():
-    elem = et.Element("cylinder", {"radius" : "1.5", "height" : "10" })
+    elem = et.Element("cylinder", {"radius" : "1.5*mm", "height" : "10.*mm" })
     fname = os.path.abspath("./test_xmls/empty.xml")
     p = Parser(fname)
     assert(p.isComp(elem) == True)
@@ -45,7 +46,7 @@ def test_isBinaryTrue():
     assert(p.isBinary(elem) == True)
 
 def test_isBinaryFalse():
-    elem = et.Element("cylinder", {"radius" : "1.5", "height" : "10" })
+    elem = et.Element("cylinder", {"radius" : "1.5*mm", "height" : "10.*mm" })
     fname = os.path.abspath("./test_xmls/empty.xml")
     p = Parser(fname)
     assert(p.isBinary(elem) == False)
@@ -57,24 +58,24 @@ def test_isUnaryTrue():
     assert(p.isUnary(elem) == True)
 
 def test_isUnaryFalse():
-    elem = et.Element("cylinder", {"radius" : "1.5", "height" : "10" })
+    elem = et.Element("cylinder", {"radius" : "1.5*mm", "height" : "10.*mm" })
     fname = os.path.abspath("./test_xmls/empty.xml")
     p = Parser(fname)
     assert(p.isUnary(elem) == False)
 
 def test_makeComp():
-    elem = et.Element("cylinder", {"radius" : "1.5", "height" : "10" })
+    elem = et.Element("cylinder", {"radius" : "1.5*mm", "height" : "10.*mm" })
     fname = os.path.abspath("./test_xmls/empty.xml")
     p = Parser(fname)
     test = p.makeComp(elem)
     sol = components.Cylinder(elem)
     assert(test == sol)
 
-def test_makeBinary():
+def test_makeNary():
     elem = et.Element("difference")
     fname = os.path.abspath("./test_xmls/empty.xml")
     p = Parser(fname)
-    test = p.makeBinary(elem)
+    test = p.makeNary(elem)
     sol = operations.Difference()
     assert(test == sol)
 
