@@ -6,16 +6,22 @@
         <union>
             <union>
                 <torus major="11.25*cm" minor="5.*cm"/>
-                <translation>
-                    <cylinder height="10.*cm" radius="11.25*cm"/>
-                    <vector beam="0.*m" transversal="0.*m" vertical="-5.*cm"/>
-                </translation>
+                <!--<translation>-->
+                <cylinder height="10.*cm" radius="11.25*cm"/>
+                    <!--<vector beam="0.*m" transversal="0.*m" vertical="-5.*cm"/>-->
+                <!--</translation>-->
             </union>
-            <cylinder height="8.5*cm" radius="1.*cm"/>
+            <translation>
+                <cylinder height="8.5*cm" radius="1.*cm"/>
+                <vector beam="0.*m" transversal="0.*m" vertical="4.25*cm"/>
+            </translation>
         </union>
         <translation>
             <rotation>
-                <cylinder height="11.25*cm" radius="1.*cm"/>
+                <translation>
+                    <cylinder height="11.25*cm" radius="1.*cm"/>
+                    <vector beam="0*m" transversal="0.*m" vertical="5.625*cm"/>
+                </translation>
                 <angle>90*deg</angle>
                 <axis beam="0.0" transversal="1.0" vertical="0.0"/>
             </rotation>
