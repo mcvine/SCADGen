@@ -1,12 +1,30 @@
 sudo: true
-
 language: python
 
 python:
     - "2.7"
-    - "3.3"
-    - "3.4"
-    - "3.5"
-    - "3.6"
+#    - "3.3"
+#    - "3.4"
+#    - "3.5"
+#    - "3.6"
 
+before_install:
+    - if [[ ${TRAVIS_PYTHON_VERSION} == "2.7"]]; then wget http://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh; else wget http://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh; fi
+    - chmod +x miniconda.sh
+    - ./miniconda.sh -b -p $HOME/miniconda
+    - export PATH=/home/travis/mc/bin:$PATH
 
+install:
+    - conda config --set always_yes true
+    - conda update conda
+    - conda config --add channels conda-forge
+    - conda config --add channels mcvine
+    - conda install -n root conda-build
+    - conda create -q --name testenv python=$TRAVIS_PYTHON_VERSION
+    - conda install -n testenv pytest pytest-cov
+    - conda install -n testenv -c mcvine pyre
+    - source activate testenv
+
+script:
+    - cd ./tests/pytest
+    - pytest --cov=../../SCADGen/python
