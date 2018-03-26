@@ -31,5 +31,6 @@ install:
 #    - python ./SCADGen/setup.py install
 
 script:
+    - ls
 #    - cd ./tests/pytest
 #    - pytest --cov=../../SCADGen/python
