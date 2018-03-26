@@ -28,8 +28,8 @@ install:
     - conda install -n testenv pytest pytest-cov
     - conda install -n testenv -c mcvine pyre
     - source activate testenv
-    - python ./SCADGen/setup.py install
+#    - python ./SCADGen/setup.py install
 
 script:
-    - cd ./tests/pytest
-    - pytest --cov=../../SCADGen/python
+#    - cd ./tests/pytest
+#    - pytest --cov=../../SCADGen/python
