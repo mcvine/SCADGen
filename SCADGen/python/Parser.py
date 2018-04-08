@@ -85,7 +85,7 @@ class Parser:
         returns False.
         """
         tag = elem.tag
-        if tag == "block" or tag == "cone" or tag == "cylinder" or tag == "pyramid" or tag == "sphere" or tag == "torus":
+        if tag in "block cone cylinder pyramid sphere torus".split():
             return True
         elif tag == "generalized-cone":
             raise NotImplementedError("Generalized Cone is not yet implemented")
@@ -140,32 +140,32 @@ class Parser:
             raise NotImplementedError("{0!s} is not implemented".format(tag))"""
             
     def isNary(self, elem):
-      """
-      If the element's tag identifies it as a Nary
-      operation, this function returns True. Otherwise,
-      it returns False.
-      """
-      tag = elem.tag
-      if tag == "union" or tag == "intersection":
-          return True
-      else:
-          return False
+        """
+        If the element's tag identifies it as a Nary
+        operation, this function returns True. Otherwise,
+        it returns False.
+        """
+        tag = elem.tag
+        if tag in "union intersection".split():
+            return True
+        else:
+            return False
 
     def makeNary(self, elem):
-      """
-      Using the element's tag, this function creates the
-      correct basic Python object, which is then returned.
-      If the element is not (yet) implemented in this
-      repository, a NotImplementedError is raised.
-      """
-      if not self.containsop:
-          self.containsop = True
-      tag = elem.tag.title()
-      try:
-          ctor = getattr(operations, tag)
-          return ctor()
-      except AttributeError:
-          raise NotImplementedError("{0!s} is not implemented".format(tag))
+        """
+        Using the element's tag, this function creates the
+        correct basic Python object, which is then returned.
+        If the element is not (yet) implemented in this
+        repository, a NotImplementedError is raised.
+        """
+        if not self.containsop:
+            self.containsop = True
+        tag = elem.tag.title()
+        try:
+            ctor = getattr(operations, tag)
+            return ctor()
+        except AttributeError:
+            raise NotImplementedError("{0!s} is not implemented".format(tag))
 
     def isUnary(self, elem):
         """
@@ -179,7 +179,7 @@ class Parser:
         if not self.containsop:
             self.containsop = True
         tag = elem.tag
-        if tag == "dilation" or tag == "reflection" or tag == "rotation" or tag == "translation":
+        if tag is "dilation reflection rotation translation".split():
             return True
         elif tag == "reversal":
             raise NotImplementedError("Reversal is not yet implemented")
@@ -192,39 +192,16 @@ class Parser:
         in the getRootElems() function, this function creates the
         correct basic Python object, which is then returned.
         If the element is not (yet) implemented in this
-        repository, a NotImplementedError is raised. The extra
-        code in this function compared to the other "make" functions
-        is used to pass the correct attributes into the constructor
-        for the Python object being made.
+        repository, a NotImplementedError is raised. 
         """
+        if not self.containsop:
+            self.containsop = True
         tag = elem.tag
         assert(len(attrs) > 0)
-        if tag == "dilation":
-            assert(attrs[0].tag == "scale")
-            return operations.Dilation(float(attrs[0].text))
-        elif tag == "reflection":
-            assert(attrs[0].tag == "vector")
-            return operations.Reflection(attrs[0].text)
-        elif tag == "reversal":
-            raise NotImplementedError("Reversal is not yet implemented")
-        elif tag == "rotation":
-            assert(len(attrs) >= 2)
-            assert((attrs[0].tag == "angle" and attrs[1].tag == "axis")
-                or (attrs[0].tag == "axis" and attrs[1].tag == "angle"))
-            angle = None
-            axis = None
-            if attrs[0].tag == "angle":
-                angle = attrs[0]
-                axis = attrs[1]
-            else:
-                angle = attrs[1]
-                axis = attrs[0]
-            return operations.Rotation(angle.text, axis)
-        elif tag == "translation":
-            assert(attrs[0].tag == "vector")
-            return operations.Translation(attrs[0])
-        else:
+        ctor = operations.unary_dict.get(tag)
+        if ctor == None:
             raise NotImplementedError("{0!s} is not implemented".format(tag))
+        return ctor(attrs)
 
     def printTorusModule(self):
         """
