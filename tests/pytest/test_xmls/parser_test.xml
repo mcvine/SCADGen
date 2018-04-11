@@ -3,10 +3,10 @@
 <geometry>
 
     <union>
-        <cylinder height="5" radius="2.5"/>
+        <cylinder height="5.*mm" radius="2.5*mm"/>
         <translation>
-            <cylinder height="10" radius="1.5"/>
-            <vector>(0, 0, -2.5)</vector>
+            <cylinder height="10.*mm" radius="1.5*mm"/>
+            <vector beam="0.*mm" transversal="0.*mm" vertical="-2.5*mm"/>
         </translation>
     </union>
 

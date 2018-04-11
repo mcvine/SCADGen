@@ -1,5 +1,11 @@
 #!usr/bin bash
 
-conda create -q -n scadgen_test python=$TRAVIS_PYTHON_VERSION pytest pytest_cov
-source activate scadgen_test
-python setup.py install
+conda config --set always_yes true
+conda update conda
+conda config --add channels conda-forge
+conda config --add channels mcvine
+conda install -n root conda-build
+conda create -q --name testenv python=$TRAVIS_PYTHON_VERSION
+conda install -n testenv pytest pytest-cov
+conda install -n testenv -c mcvine pyre
+source activate testenv
