@@ -231,6 +231,6 @@ class Parser:
         for elem in self.rootelems:
             if self.containsop and elem.isComp():
                 continue
-            scadfile.write("{0!s}".format(elem))
+            scadfile.write("{0!s}\n".format(elem))
         scadfile.close()
         return
