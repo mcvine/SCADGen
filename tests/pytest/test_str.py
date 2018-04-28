@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import sys
 import os
 
-sys.path.append(os.path.abspath("../../SCADGen/python"))
+sys.path.append(os.path.abspath("./SCADGen/python"))
 from Parser import Parser
 import components
 import operations
@@ -56,8 +56,8 @@ def test_difference_str():
     comp1 = components.Cylinder(elem1)
     comp2 = components.Cone(elem2)
     test = operations.Difference()
-    test.comps.append(comp1)
-    test.comps.append(comp2)
+    test.addComp(comp1)
+    test.addComp(comp2)
     sol = """difference() {
     cylinder(h = 5.0, r = 2.5, $fn=100);
     cylinder(h = 5.0, r1 = 2.5, r2 = 0.0, $fn=100);
@@ -77,8 +77,8 @@ def test_intersection_str():
     elem1 = et.Element("sphere", { "radius" : "5.*mm" })
     elem2 = et.Element("block", { "width" : "5.*mm", "height" : "1.*mm", "thickness": "5.*mm" })
     test = operations.Intersection()
-    test.comps.append(components.Sphere(elem1))
-    test.comps.append(components.Block(elem2))
+    test.addComp(components.Sphere(elem1))
+    test.addComp(components.Block(elem2))
     sol = """intersection() {
     sphere(r = 5.0, $fn=100);
     cube([5.0, 5.0, 1.0]);
@@ -118,8 +118,8 @@ def test_union_str():
     elem1 = et.Element("sphere", { "radius" : "2.5*mm" })
     elem2 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "1.*mm" })
     test = operations.Union()
-    test.comps.append(components.Sphere(elem1))
-    test.comps.append(components.Cylinder(elem2))
+    test.addComp(components.Sphere(elem1))
+    test.addComp(components.Cylinder(elem2))
     sol = """union() {
     sphere(r = 2.5, $fn=100);
     cylinder(h = 5.0, r = 1.0, $fn=100);
