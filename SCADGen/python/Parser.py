@@ -179,7 +179,7 @@ class Parser:
         if not self.containsop:
             self.containsop = True
         tag = elem.tag
-        if tag is "dilation reflection rotation translation".split():
+        if tag in "dilation reflection rotation translation".split():
             return True
         elif tag == "reversal":
             raise NotImplementedError("Reversal is not yet implemented")
