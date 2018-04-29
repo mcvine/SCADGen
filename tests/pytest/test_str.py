@@ -99,7 +99,7 @@ def test_rotation_str():
     vector = et.Element("axis", { "beam" : "0.0", "transversal" : "0.0", "vertical" : "1.0" })
     test = operations.Rotation("45.*deg", vector)
     test.body = components.Block(elem)
-    sol = """rotate(45, [0.0, 0.0, 1.0]) {
+    sol = """rotate(45.0, [0.0, 0.0, 1.0]) {
     cube([5.0, 5.0, 5.0], center=true);
 }"""
     assert("{0!s}".format(test) == sol)
