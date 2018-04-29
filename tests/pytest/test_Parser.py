@@ -25,8 +25,6 @@ def test_parsercore():
     sol.addComp(op)
     p = Parser(fname)
     test = p.rootelems[0]
-    print("{0!s}".format(sol))
-    print("{0!s}".format(test))
     assert(test == sol)
 
 def test_isCompTrue():

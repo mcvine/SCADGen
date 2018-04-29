@@ -25,3 +25,6 @@ class Nary:
 
     def __ne__(self, rhs):
         return not (self == rhs)
+
+    def __getitem__(self, index):
+        return self.comps[index]

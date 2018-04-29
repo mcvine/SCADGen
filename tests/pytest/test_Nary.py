@@ -16,7 +16,7 @@ def test_difference_Comp1Height():
     op = operations.Difference()
     op.addComp(components.Cylinder(elem1))
     op.addComp(components.Cone(elem2))
-    assert(op.comps[0].height == 5)
+    assert(op[0].height == 5)
 
 def test_difference_Comp1Radius():
     elem1 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
@@ -24,7 +24,7 @@ def test_difference_Comp1Radius():
     op = operations.Difference()
     op.addComp(components.Cylinder(elem1))
     op.addComp(components.Cone(elem2))
-    assert(op.comps[0].radius == 2.5)
+    assert(op[0].radius == 2.5)
 
 def test_difference_Comp2Height():
     elem1 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
@@ -32,7 +32,7 @@ def test_difference_Comp2Height():
     op = operations.Difference()
     op.addComp(components.Cylinder(elem1))
     op.addComp(components.Cone(elem2))
-    assert(op.comps[1].height == 5)
+    assert(op[1].height == 5)
 
 def test_difference_Comp2Top():
     elem1 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
@@ -40,7 +40,7 @@ def test_difference_Comp2Top():
     op = operations.Difference()
     op.addComp(components.Cylinder(elem1))
     op.addComp(components.Cone(elem2))
-    assert(op.comps[1].top_radius == 0)
+    assert(op[1].top_radius == 0)
 
 def test_difference_Comp2Bottom():
     elem1 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
@@ -48,7 +48,7 @@ def test_difference_Comp2Bottom():
     op = operations.Difference()
     op.addComp(components.Cylinder(elem1))
     op.addComp(components.Cone(elem2))
-    assert(op.comps[1].bottom_radius == 2.5)
+    assert(op[1].bottom_radius == 2.5)
 
 def test_intersection_Comp1Radius():
     elem1 = et.Element("sphere", { "radius" : "5.*mm" })
@@ -56,7 +56,7 @@ def test_intersection_Comp1Radius():
     op = operations.Intersection()
     op.addComp(components.Sphere(elem1))
     op.addComp(components.Block(elem2))
-    assert(op.comps[0].radius == 5)
+    assert(op[0].radius == 5)
 
 def test_intersection_Comp2Diag():
     elem1 = et.Element("sphere", { "radius" : "5.*mm" })
@@ -64,7 +64,7 @@ def test_intersection_Comp2Diag():
     op = operations.Intersection()
     op.addComp(components.Sphere(elem1))
     op.addComp(components.Block(elem2))
-    assert(op.comps[1].x == 5 and op.comps[1].y == 5 and op.comps[1].z == 1)
+    assert(op[1].x == 5 and op[1].y == 5 and op[1].z == 1)
 
 def test_union_Comp1Radius():
     elem1 = et.Element("sphere", { "radius" : "2.5*mm" })
@@ -72,7 +72,7 @@ def test_union_Comp1Radius():
     op = operations.Union()
     op.addComp(components.Sphere(elem1))
     op.addComp(components.Cylinder(elem2))
-    assert(op.comps[0].radius == 2.5)
+    assert(op[0].radius == 2.5)
 
 def test_union_Comp2Height():
     elem1 = et.Element("sphere", { "radius" : "2.5*mm" })
@@ -80,7 +80,7 @@ def test_union_Comp2Height():
     op = operations.Union()
     op.addComp(components.Sphere(elem1))
     op.addComp(components.Cylinder(elem2))
-    assert(op.comps[1].height == 5)
+    assert(op[1].height == 5)
 
 def test_union_Comp2Radius():
     elem1 = et.Element("sphere", { "radius" : "2.5*mm" })
@@ -88,4 +88,4 @@ def test_union_Comp2Radius():
     op = operations.Union()
     op.addComp(components.Sphere(elem1))
     op.addComp(components.Cylinder(elem2))
-    assert(op.comps[1].radius == 1)
+    assert(op[1].radius == 1)
