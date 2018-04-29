@@ -21,7 +21,7 @@ class Cone(Component):
         Returns a string containing the SCAD
         code for this Cone object.
         """
-        return "cylinder(h = {0!s}, r1 = {1!s}, r2 = {2!s}, $fn=100);".format(
+        return "cylinder(h = {0!s}, r1 = {1!s}, r2 = {2!s}, $fn=100, center=true);".format(
             self.height, self.bottom_radius, self.top_radius)
 
     def __eq__(self, rhs):

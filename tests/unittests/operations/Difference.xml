@@ -3,8 +3,8 @@
 <geometry>
 
     <difference>
-        <cylinder height="5.*cm" radius="2.5*mm"/>
-        <cone height="5.*cm" topRadius="0.*mm" bottomRadius="2.5*mm"/>
+        <cylinder height="3.*cm" radius="0.5*cm"/>
+        <cone height="3.01*cm" topRadius="0.1*cm" bottomRadius="0.5*cm"/>
     </difference>
 
 </geometry>

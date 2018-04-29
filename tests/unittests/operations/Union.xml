@@ -4,7 +4,7 @@
 
     <union>
         <sphere radius="2.5*cm"/>
-        <cylinder height="5.*cm" radius="1.*cm"/>
+        <cylinder height="10.*cm" radius="1.*cm"/>
     </union>
 
 </geometry>

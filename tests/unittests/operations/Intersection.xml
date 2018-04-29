@@ -4,7 +4,7 @@
 
     <intersection>
         <sphere radius="5.*cm"/>
-	<block width="5.*cm" height="7.*cm" thickness="1.*mm" />
+	<block width="10.*cm" height="20.*cm" thickness="1.*mm" />
     </intersection>
 
 </geometry>

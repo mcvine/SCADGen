@@ -14,46 +14,70 @@
                                         <cylinder height="20.*mm" radius="30.*mm"/>
                                         <cylinder height="20.*mm" radius="10.*mm"/>
                                     </difference>
-                                <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                                <translation>
+                                    <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                                    <vector beam="15.*mm" transversal="0.*m" vertical="0.*m"/>
+                                </translation>
                                 </difference>
                                 <rotation>
-                                    <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                                    <translation>
+                                        <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                                        <vector beam="15.*mm" transversal="0.*m" vertical="0.*m"/>
+                                    </translation>
                                     <angle>45*deg</angle>
                                     <axis beam="0.0" transversal="0.0" vertical="1.0"/>
                                 </rotation>
                             </difference>
                             <rotation>
-                                <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                                <translation>
+                                    <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                                    <vector beam="15.*mm" transversal="0.*m" vertical="0.*m"/>
+                                </translation>
                                 <angle>90*deg</angle>
                                 <axis beam="0.0" transversal="0.0" vertical="1.0"/>
                             </rotation>
                         </difference>
                         <rotation>
-                            <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                            <translation>
+                                <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                                <vector beam="15.*mm" transversal="0.*m" vertical="0.*m"/>
+                            </translation>
                             <angle>135*deg</angle>
                             <axis beam="0.0" transversal="0.0" vertical="1.0"/>
                         </rotation>
                     </difference>
                     <rotation>
-                        <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                        <translation>
+                            <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                            <vector beam="15.*mm" transversal="0.*m" vertical="0.*m"/>
+                        </translation>
                         <angle>180*deg</angle>
                         <axis beam="0.0" transversal="0.0" vertical="1.0"/>
                     </rotation>
                 </difference>
                 <rotation>
-                    <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                    <translation>
+                        <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                        <vector beam="15.*mm" transversal="0.*m" vertical="0.*m"/>
+                    </translation>
                     <angle>225*deg</angle>
                     <axis beam="0.0" transversal="0.0" vertical="1.0"/>
                 </rotation>
             </difference>
             <rotation>
-                <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                <translation>
+                    <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                    <vector beam="15.*mm" transversal="0.*m" vertical="0.*m"/>
+                </translation>
                 <angle>270*deg</angle>
                 <axis beam="0.0" transversal="0.0" vertical="1.0"/>
             </rotation>
         </difference>
         <rotation>
-            <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+            <translation>
+                <block thickness="30.*mm" width="2.5*mm" height="20.*mm"/>
+                <vector beam="15.*mm" transversal="0.*m" vertical="0.*m"/>
+            </translation>
             <angle>315*deg</angle>
             <axis beam="0.0" transversal="0.0" vertical="1.0"/>
         </rotation>
