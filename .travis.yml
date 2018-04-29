@@ -26,9 +26,13 @@ install:
     - conda install -n root conda-build
     - conda create -q --name testenv python=$TRAVIS_PYTHON_VERSION
     - conda install -n testenv pytest pytest-cov
+    - conda install -n testenv coveralls
     - conda install -n testenv -c mcvine pyre
     - source activate testenv
 #    - python ./SCADGen/setup.py install
 
 script:
     - pytest --cov=./SCADGen/python
+
+after_success:
+    - coveralls
