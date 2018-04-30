@@ -22,3 +22,9 @@ class Nary:
             if compl != compr:
                 return False
         return True
+
+    def __ne__(self, rhs):
+        return not (self == rhs)
+
+    def __getitem__(self, index):
+        return self.comps[index]

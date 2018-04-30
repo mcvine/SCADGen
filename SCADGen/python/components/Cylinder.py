@@ -27,8 +27,13 @@ class Cylinder(Component):
         Returns true if the two Cylinder components are equal. Returns false otherwise.
         """
         if type(self) != type(rhs):
+            print("Type failure")
             return False
         elif self.radius != rhs.radius or self.height != rhs.height:
+            print("Param Failure")
             return False
         else:
             return True
+
+    def __ne__(self, rhs):
+        return not (self == rhs)

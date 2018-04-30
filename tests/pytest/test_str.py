@@ -3,7 +3,7 @@ from __future__ import absolute_import
 import sys
 import os
 
-sys.path.append(os.path.abspath("../../SCADGen/python"))
+sys.path.append(os.path.abspath("./SCADGen/python"))
 from Parser import Parser
 import components
 import operations
@@ -17,19 +17,19 @@ def test_block_str():
     assert("{0!s}".format(test) == sol)
 
 def test_cone_str():
-    elem1 = et.Element("cone", { "height" : "5", "topRadius" : "2", "bottomRadius" : "4" })
+    elem1 = et.Element("cone", { "height" : "5.*mm", "topRadius" : "2.*mm", "bottomRadius" : "4.*mm" })
     test = components.Cone(elem1)
     sol = "cylinder(h = 5.0, r1 = 4.0, r2 = 2.0, $fn=100, center=true);"
     assert("{0!s}".format(test) == sol)
 
 def test_cylinder_str():
-    elem1 = et.Element("cylinder", { "height" : "5", "radius" : "2.5" })
+    elem1 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
     test = components.Cylinder(elem1)
     sol = "cylinder(h = 5.0, r = 2.5, $fn=100, center=true);"
     assert("{0!s}".format(test) == sol)
 
 def test_pyramid_str():
-    elem1 = et.Element("pyramid", { "edgeX" : "5", "edgeY" : "5", "height" : "10" })
+    elem1 = et.Element("pyramid", { "thickness" : "5.*mm", "width" : "5.*mm", "height" : "10.*mm" })
     test = components.Pyramid(elem1)
     sol = """polyhedron(
     points=[ [2.5,2.5,-10.0], [2.5,-2.5,-10.0],
@@ -39,25 +39,25 @@ def test_pyramid_str():
     assert("{0!s}".format(test) == sol)
 
 def test_sphere_str():
-    elem1 = et.Element("sphere", { "radius" : "2.5" })
+    elem1 = et.Element("sphere", { "radius" : "2.5*mm" })
     test = components.Sphere(elem1)
     sol = "sphere(r = 2.5, $fn=100);"
     assert("{0!s}".format(test) == sol)
 
 def test_torus_str():
-    elem1 = et.Element("torus", { "major" : "10", "minor" : "5"})
+    elem1 = et.Element("torus", { "major" : "10.*mm", "minor" : "5.*mm"})
     test = components.Torus(elem1)
     sol = "Torus(10.0, 5.0);"
     assert("{0!s}".format(test) == sol)
 
 def test_difference_str():
-    elem1 = et.Element("cylinder", { "radius" : "2.5", "height" : "5" })
-    elem2 = et.Element("cone", { "bottomRadius" : "2.5", "topRadius" : "0", "height" : "5" })
+    elem1 = et.Element("cylinder", { "radius" : "2.5*mm", "height" : "5.*mm" })
+    elem2 = et.Element("cone", { "bottomRadius" : "2.5*mm", "topRadius" : "0.*mm", "height" : "5.*mm" })
     comp1 = components.Cylinder(elem1)
     comp2 = components.Cone(elem2)
     test = operations.Difference()
-    test.comp1 = comp1
-    test.comp2 = comp2
+    test.addComp(comp1)
+    test.addComp(comp2)
     sol = """difference() {
     cylinder(h = 5.0, r = 2.5, $fn=100, center=true);
     cylinder(h = 5.0, r1 = 2.5, r2 = 0.0, $fn=100, center=true);
@@ -74,11 +74,11 @@ def test_dilation_str():
     assert("{0!s}".format(test) == sol)
 
 def test_intersection_str():
-    elem1 = et.Element("sphere", { "radius" : "5" })
+    elem1 = et.Element("sphere", { "radius" : "5.*mm" })
     elem2 = et.Element("block", { "width" : "5.*mm", "height" : "1.*mm", "thickness": "5.*mm" })
     test = operations.Intersection()
-    test.comp1 = components.Sphere(elem1)
-    test.comp2 = components.Block(elem2)
+    test.addComp(components.Sphere(elem1))
+    test.addComp(components.Block(elem2))
     sol = """intersection() {
     sphere(r = 5.0, $fn=100);
     cube([5.0, 5.0, 1.0], center=true);
@@ -86,7 +86,7 @@ def test_intersection_str():
     assert("{0!s}".format(test) == sol)
 
 def test_reflection_str():
-    elem = et.Element("cylinder", { "height" : "5", "radius" : "2.5" })
+    elem = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
     test = operations.Reflection("(1, 1, 1)")
     test.body = components.Cylinder(elem)
     sol = """mirror([1.0, 1.0, 1.0]) {
@@ -96,16 +96,18 @@ def test_reflection_str():
 
 def test_rotation_str():
     elem = et.Element("block", { "width" : "5.*mm", "height" : "5.*mm", "thickness": "5.*mm" })
-    test = operations.Rotation(45, "(0, 0, 1)")
+    vector = et.Element("axis", { "beam" : "0.0", "transversal" : "0.0", "vertical" : "1.0" })
+    test = operations.Rotation("45.*deg", vector)
     test.body = components.Block(elem)
-    sol = """rotate(45, [0.0, 0.0, 1.0]) {
+    sol = """rotate(45.0, [0.0, 0.0, 1.0]) {
     cube([5.0, 5.0, 5.0], center=true);
 }"""
     assert("{0!s}".format(test) == sol)
 
 def test_translation_str():
-    elem = et.Element("sphere", { "radius" : "5" })
-    test = operations.Translation("(10, 0, 0)")
+    elem = et.Element("sphere", { "radius" : "5.*mm" })
+    vector = et.Element("vector", { "beam" : "10.*mm", "transversal" : "0.*mm", "vertical" : "0.*mm" })
+    test = operations.Translation(vector)
     test.body = components.Sphere(elem)
     sol = """translate([10.0, 0.0, 0.0]) {
     sphere(r = 5.0, $fn=100);
@@ -113,11 +115,11 @@ def test_translation_str():
     assert("{0!s}".format(test) == sol)
 
 def test_union_str():
-    elem1 = et.Element("sphere", { "radius" : "2.5" })
-    elem2 = et.Element("cylinder", { "height" : "5", "radius" : "1" })
+    elem1 = et.Element("sphere", { "radius" : "2.5*mm" })
+    elem2 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "1.*mm" })
     test = operations.Union()
-    test.comp1 = components.Sphere(elem1)
-    test.comp2 = components.Cylinder(elem2)
+    test.addComp(components.Sphere(elem1))
+    test.addComp(components.Cylinder(elem2))
     sol = """union() {
     sphere(r = 2.5, $fn=100);
     cylinder(h = 5.0, r = 1.0, $fn=100, center=true);

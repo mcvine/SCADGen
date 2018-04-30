@@ -17,8 +17,8 @@ class Intersection(Nary):
         Returns a string containing the SCAD
         code for implementing an intersection.
         """
-        tmp_str = """intersection() {{\n"""
+        tmp_str = """intersection() {\n"""
         for comp in self.comps:
-            tmp_str = tmp_str + """{0!s}\n""".format(comp)
-        tmp_str = tmp_str + """}}"""
+            tmp_str = tmp_str + """    {0!s}\n""".format(comp)
+        tmp_str = tmp_str + """}"""
         return tmp_str

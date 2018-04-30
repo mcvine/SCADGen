@@ -47,3 +47,6 @@ class Translation(Transformation):
             return False
         else:
             return True
+
+    def __ne__(self, rhs):
+        return not (self == rhs)
