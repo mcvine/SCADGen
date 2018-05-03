@@ -9,10 +9,10 @@ import sys
 feature = sys.argv[1].capitalize() if len(sys.argv)>1 else ''
 
 import os
-sys.path.append(os.path.abspath("../../../SCADGen/python"))
+sys.path.append(os.path.abspath("../../.."))
 
 import glob
-from Parser import Parser
+from SCADGen.Parser import Parser
 
 filelist = glob.glob(os.path.abspath(".")+"/%s*.xml" % feature)
 for fname in filelist:
