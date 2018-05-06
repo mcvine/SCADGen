@@ -3,10 +3,8 @@ from __future__ import absolute_import
 import sys
 import os
 
-sys.path.append(os.path.abspath("./SCADGen/python"))
-from Parser import Parser
-import components
-import operations
+from SCADGen.Parser import Parser
+from SCADGen import components, operations
 
 import xml.etree.ElementTree as et
 

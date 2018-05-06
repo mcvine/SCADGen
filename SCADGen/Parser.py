@@ -1,7 +1,7 @@
 from __future__ import absolute_import
 
-import components
-import operations
+from . import components
+from . import operations
 import xml.etree.ElementTree as ET
 
 class Parser:

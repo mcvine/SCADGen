@@ -32,7 +32,7 @@ install:
 #    - python ./SCADGen/setup.py install
 
 script:
-    - pytest --cov=./SCADGen/python
+    - pytest --cov=./SCADGen
 
 after_success:
     - coveralls
