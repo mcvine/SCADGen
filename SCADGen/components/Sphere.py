@@ -16,12 +16,10 @@ class Sphere(Component):
         self.radius = _convert("radius")
         return 
 
-    def __str__(self):
-        """
-        Returns a string containing the SCAD
-        code for this sphere objec.
-        """
-        return "sphere(r = {0!s}, $fn=100);".format(self.radius)
+    def accept(self, visit):
+        from . import SCADCompVisitor, JSCompVisitor
+        assert(isinstance(visit, SCADCompVisitor) or isinstance(visit, JSCompVisitor))
+        return visit.visitSphere(self)
 
     def __eq__(self, rhs):
         """

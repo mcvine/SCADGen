@@ -14,14 +14,10 @@ class Dilation(Transformation):
         self.scale = scale
         return
 
-    def __str__(self):
-        """
-        Returns a string containing the SCAD
-        code for the dilation.
-        """
-        return """scale([{0!s}, {0!s}, {0!s}]) {{
-    {1!s}
-}}""".format(self.scale, self.body)
+    def accept(self, visit):
+        from . import SCADOpVisitor, JSOpVisitor
+        assert(isinstance(visit, SCADOpVisitor) or isinstance(visit, JSOpVisitor))
+        return visit.visitDilation(self)
 
     def __eq__(self, rhs):
         """

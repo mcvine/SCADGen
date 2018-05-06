@@ -14,3 +14,5 @@ from .Cylinder import Cylinder
 from .Pyramid import Pyramid
 from .Sphere import Sphere
 from .Torus import Torus
+from .SCADCompVisitor import SCADCompVisitor
+from .JSCompVisitor import JSCompVisitor

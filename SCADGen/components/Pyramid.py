@@ -17,16 +17,10 @@ class Pyramid(Component):
         self.x, self.y, self.z = map(_convert, "thickness width height".split())
         return;
 
-    def __str__(self):
-        """
-        Returns a string containing the SCAD code for this
-        Cone object.
-        """
-        return """polyhedron(
-    points=[ [{0!s},{1!s},-{2!s}], [{0!s},-{1!s},-{2!s}],
-             [-{0!s},-{1!s},-{2!s}], [-{0!s},{1!s},-{2!s}], [0,0,0] ],
-    faces=[ [0,1,4], [1,2,4], [2,3,4], [3,0,4], [1,0,3], [2,1,3] ]
-);""".format((self.x/2), (self.y/2), self.z)
+    def accept(self, visit):
+        from . import SCADCompVisitor, JSCompVisitor
+        assert(isinstance(visit, SCADCompVisitor) or isinstance(visit, JSCompVisitor))
+        return visit.visitPyramid(self)
 
     def __eq__(self, rhs):
         """

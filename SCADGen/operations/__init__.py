@@ -14,6 +14,8 @@ from .Rotation import Rotation
 from .Transformation import Transformation
 from .Translation import Translation
 from .Union import Union
+from .SCADOpVisitor import SCADOpVisitor
+from .JSOpVisitor import JSOpVisitor
 
 def dilation(attrs):
     assert(attrs[0].tag == "scale")

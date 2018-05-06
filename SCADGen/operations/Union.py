@@ -13,13 +13,7 @@ class Union(Nary):
         Nary.__init__(self)
         return
 
-    def __str__(self):
-        """
-        Returns a string containing the SCAD
-        code for implementing the Union.
-        """
-        tmp_str="""union() {\n"""
-        for comp in self.comps:
-            tmp_str=tmp_str+"""    {0!s}\n""".format(comp)
-        tmp_str=tmp_str+"""}"""
-        return tmp_str
+    def accept(self, visit):
+        from . import SCADOpVisitor, JSOpVisitor
+        assert(isinstance(visit, SCADOpVisitor) or isinstance(visit, JSOpVisitor))
+        return visit.visitUnion(self)

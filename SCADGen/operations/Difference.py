@@ -13,12 +13,7 @@ class Difference(Binary):
         Binary.__init__(self)
         return
 
-    def __str__(self):
-        """
-        Returns a string containing the SCAD code
-        for implementing a difference.
-        """ 
-        return """difference() {{
-    {0!s}
-    {1!s}
-}}""".format(self.comps[0], self.comps[1])
+    def accept(self, visit):
+        from . import SCADOpVisitor, JSOpVisitor
+        assert(isinstance(visit, SCADOpVisitor) or isinstance(visit, JSOpVisitor))
+        return visit.visitDifference(self)

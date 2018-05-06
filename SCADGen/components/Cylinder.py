@@ -15,12 +15,10 @@ class Cylinder(Component):
         self.radius, self.height = map(_convert, "radius height".split())
         return
 
-    def __str__(self):
-        """
-        Returns a string containing the SCAD
-        code for this cylinder object.
-        """
-        return "cylinder(h = {0!s}, r = {1!s}, $fn=100, center=true);".format(self.height, self.radius)
+    def accept(self, visit):
+        from . import SCADCompVisitor, JSCompVisitor
+        assert(isinstance(visit, SCADCompVisitor) or isinstance(visit, JSCompVisitor))
+        return visit.visitCylinder(self)
 
     def __eq__(self, rhs):
         """

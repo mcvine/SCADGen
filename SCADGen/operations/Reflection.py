@@ -20,14 +20,10 @@ class Reflection(Transformation):
         self.vector.append(float(v[comma2+1:].replace(" ", "")))
         return
 
-    def __str__(self):
-        """
-        Returns a string containing the SCAD
-        code for the reflection.
-        """
-        return """mirror([{0!s}, {1!s}, {2!s}]) {{
-    {3!s}
-}}""".format(self.vector[0], self.vector[1], self.vector[2], self.body)
+    def accept(self, visit):
+        from . import SCADOpVisitor, JSOpVisitor
+        assert(isinstance(visit, SCADOpVisitor) or isinstance(visit, JSOpVisitor))
+        return visit.visitReflection(self)
 
     def __eq__(self, rhs):
         """

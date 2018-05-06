@@ -16,13 +16,10 @@ class Cone(Component):
         self.bottom_radius, self.top_radius, self.height = map(_convert, "bottomRadius topRadius height".split())
         return
 
-    def __str__(self):
-        """
-        Returns a string containing the SCAD
-        code for this Cone object.
-        """
-        return "cylinder(h = {0!s}, r1 = {1!s}, r2 = {2!s}, $fn=100, center=true);".format(
-            self.height, self.bottom_radius, self.top_radius)
+    def accept(self, visit):
+        from . import SCADCompVisitor, JSCompVisitor
+        assert(isinstance(visit, SCADCompVisitor) or isinstance(visit, JSCompVisitor))
+        return visit.visitCone(self)
 
     def __eq__(self, rhs):
         """

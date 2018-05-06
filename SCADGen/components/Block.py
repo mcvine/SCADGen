@@ -17,12 +17,10 @@ class Block(Component):
         self.x, self.y, self.z = thickness, width, height
         return 
 
-    def __str__(self):
-        """
-        Returns a string containing the SCAD
-        code for this block/cube object.
-        """
-        return "cube([{0!s}, {1!s}, {2!s}], center=true);".format(self.x, self.y, self.z)
+    def accept(self, visit):
+        from . import SCADCompVisitor, JSCompVisitor
+        assert(isinstance(visit, SCADCompVisitor) or isinstance(visit, JSCompVisitor))
+        return visit.visitBlock(self)
 
     def __eq__(self, rhs):
         """

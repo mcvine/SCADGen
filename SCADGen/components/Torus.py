@@ -16,12 +16,10 @@ class Torus(Component):
         self.major, self.minor = map(_convert, "major minor".split())
         return
 
-    def __str__(self):
-        """
-        Returns a string containing the SCAD code
-        for instantiating this Torus object.
-        """
-        return "Torus({0!s}, {1!s});".format(self.major, self.minor)
+    def accept(self, visit):
+        from . import SCADCompVisitor, JSCompVisitor
+        assert(isinstance(visit, SCADCompVisitor) or isinstance(visit, JSCompVisitor))
+        return visit.visitTorus(self)
 
     def __eq__(self, rhs):
         """

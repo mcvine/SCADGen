@@ -6,7 +6,7 @@ import xml.etree.ElementTree as ET
 
 class Parser:
 
-    def __init__(self, xml_file):
+    def __init__(self, xml_file, mode="SCAD"):
         """
         This constructor creates an XML ElementTree object
         from the xml file passed as a parameter. Then, after
@@ -18,6 +18,7 @@ class Parser:
         self.containsTorus = False
         self.containsop = False
         self.filename = xml_file
+        self.mode = mode
         self.parse()
         return
 
@@ -231,6 +232,10 @@ class Parser:
         for elem in self.rootelems:
             if self.containsop and elem.isComp():
                 continue
-            scadfile.write("{0!s}\n".format(elem))
+            if self.mode == "SCAD":
+                visit = components.SCADCompVisitor() if elem.isComp() else operations.SCADOpVisitor()
+            else:
+                visit = components.JSCompVisitor() if elem.isComp() else operations.JSOpVisitor()
+            scadfile.write(elem.accept(visit) + "\n")
         scadfile.close()
         return
