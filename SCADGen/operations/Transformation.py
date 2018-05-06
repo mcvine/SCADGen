@@ -9,14 +9,14 @@ class Transformation:
 
     def _convertToLength(self, s):
         from . import unit_parser, remove_length_unit
-        if isinstance(s, basestring) and s[-1].isalpha():
+        if s[-1].isalpha():
             return remove_length_unit(unit_parser.parse(s))
         else:
             return float(s)
 
     def _convertToAngle(self, s):
         from . import unit_parser, remove_angle_unit
-        if isinstance(s, basestring) and s[-1].isalpha():
+        if s[-1].isalpha():
             return remove_angle_unit(unit_parser.parse(s))
         else:
             return float(s)
