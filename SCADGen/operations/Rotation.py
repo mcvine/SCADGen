@@ -12,7 +12,6 @@ class Rotation(Transformation):
         self.angle.
         """
         Transformation.__init__(self)
-        from . import unit_parser, angle_unit
         beam = float(vector.get("beam"))
         transversal = float(vector.get("transversal"))
         vertical = float(vector.get("vertical"))
@@ -20,7 +19,7 @@ class Rotation(Transformation):
         self.vector.append(beam)
         self.vector.append(transversal)
         self.vector.append(vertical)
-        self.angle = unit_parser.parse(angle)/angle_unit
+        self.angle = self._convertToAngle(angle)
         """v = vector[1:-1]
         comma1 = v.find(",")
         comma2 = v[comma1+1:].find(",") + comma1 + 1
