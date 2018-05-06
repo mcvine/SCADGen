@@ -94,3 +94,11 @@ def test_generateSCAD():
     test = os.path.abspath("./tests/pytest/test_xmls/parser_test.scad")
     sol = os.path.abspath("./tests/pytest/test_xmls/parser_sol.scad")
     assert(filecmp.cmp(test, sol) == True)
+
+def test_unitlessParse():
+    fname = os.path.abspath("./tests/pytest/test_xmls/unitless.xml")
+    p = Parser(fname)
+    p.createSCAD()
+    test = os.path.abspath("./tests/pytest/test_xmls/unitless.scad")
+    sol = os.path.abspath("./tests/pytest/test_xmls/unitless_sol.scad")
+    assert(filecmp.cmp(test, sol) == True)
