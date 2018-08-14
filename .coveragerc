@@ -1,0 +1,6 @@
+[run]
+omit =
+    # Omits the non-implemented files from coverage reports
+    ./SCADGen/components/GeneralizedCone.py
+    ./SCADGen/components/Prism.py
+    ./SCADGen/operations/Reversal.py

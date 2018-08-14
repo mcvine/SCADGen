@@ -2,12 +2,30 @@
 
 <geometry>
 
-    <union>
-        <cylinder height="5.*mm" radius="2.5*mm"/>
-        <translation>
-            <cylinder height="10.*mm" radius="1.5*mm"/>
-            <vector beam="0.*mm" transversal="0.*mm" vertical="-2.5*mm"/>
-        </translation>
-    </union>
+    <dilation>
+        <rotation>
+            <translation>
+                <reflection>
+                    <difference>
+                        <intersection>
+                            <block width="20.*mm" height="20.*mm" thickness="20.*mm"/>
+                            <sphere radius="20.*mm"/>
+                            <pyramid thickness="20.*mm" width="20.*mm" height="10.*mm"/>
+                        </intersection>
+                        <union>
+                            <cone height="20.*mm" topRadius="10.*mm" bottomRadius="20.*mm"/>
+                            <cylinder height="10.*mm" radius="20.*mm"/>
+                            <torus major="30.*mm" minor="20.*mm"/>
+                        </union>
+                    </difference>
+                    <vector>(1, 1, 0)</vector>
+                </reflection>
+                <vector beam="0.*mm" transversal="0.*mm" vertical="5.*cm"/>
+            </translation>
+            <angle>90*deg</angle>
+            <axis beam="1.0" transversal="0.0" vertical="0.0"/>
+        </rotation>
+        <scale>3</scale>
+    </dilation>
 
 </geometry>

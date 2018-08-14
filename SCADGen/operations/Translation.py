@@ -13,7 +13,7 @@ class Translation(Transformation):
         """
         Transformation.__init__(self)
         from . import unit_parser, length_unit
-        _convert = lambda x: unit_parser.parse(vector.get(x))/length_unit
+        _convert = lambda x: self._convertToLength(vector.get(x))
         beam, transversal, vertical = map(_convert, "beam transversal vertical".split())
         self.vector = []
         self.vector.append(beam)

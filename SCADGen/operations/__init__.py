@@ -15,6 +15,14 @@ from .Transformation import Transformation
 from .Translation import Translation
 from .Union import Union
 
+def remove_length_unit(x):
+    x + length_unit
+    return x/length_unit
+
+def remove_angle_unit(x):
+    x + angle_unit
+    return x/angle_unit
+
 def dilation(attrs):
     assert(attrs[0].tag == "scale")
     return Dilation(float(attrs[0].text))
