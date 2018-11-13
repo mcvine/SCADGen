@@ -13,16 +13,17 @@ class Cone(Component):
         object, xml_elem.
         """
         _convert = lambda x: self._convertToLength(xml_elem.get(x))
-        self.bottom_radius, self.top_radius, self.height = map(_convert, "bottomRadius topRadius height".split())
-        return
+        self.top_radius, self.height = map(_convert, "radius height".split())
+        # return
 
     def __str__(self):
         """
         Returns a string containing the SCAD
         code for this Cone object.
         """
-        return "cylinder(h = {0!s}, r1 = {1!s}, r2 = {2!s}, $fn=100, center=true);".format(
-            self.height, self.bottom_radius, self.top_radius)
+
+        return "translate([0.0, 0.0, -{0!s}]) {{cylinder(h = {1!s},  r1 = {2!s}, $fn=100, center=true);}}".format(
+            self.height/2, self.height,  self.top_radius)
 
     def __eq__(self, rhs):
         """
@@ -30,7 +31,7 @@ class Cone(Component):
         """
         if type(self) != type(rhs):
             return False
-        elif self.bottom_radius != rhs.bottom_radius or self.top_radius != rhs.top_radius or self.height != rhs.height:
+        elif self.top_radius != rhs.top_radius or self.height != rhs.height:
             return False
         else:
             return True
