@@ -33,6 +33,4 @@ install:
 
 script:
     - pytest --cov=./SCADGen
-
-after_success:
     - coveralls
