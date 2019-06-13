@@ -13,7 +13,7 @@
                             <pyramid thickness="20.*mm" width="20.*mm" height="10.*mm"/>
                         </intersection>
                         <union>
-                            <cone height="20.*mm" topRadius="10.*mm" bottomRadius="20.*mm"/>
+                            <cone height="20.*mm" radius="20.*mm"/>
                             <cylinder height="10.*mm" radius="20.*mm"/>
                             <torus major="30.*mm" minor="20.*mm"/>
                         </union>

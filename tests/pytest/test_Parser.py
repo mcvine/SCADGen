@@ -28,7 +28,7 @@ def test_parsercore():
     op5.addComp(components.Sphere(comp2))
     op5.addComp(components.Pyramid(comp3))
     op6 = operations.Union()
-    comp4 = et.Element("cone", { "height" : "20.*mm", "topRadius" : "10.*mm", "bottomRadius" : "20.*mm" })
+    comp4 = et.Element("cone", { "height" : "20.*mm", "radius" : "20.*mm" })
     comp5 = et.Element("cylinder", { "height" : "10.*mm", "radius" : "20.*mm" })
     comp6 = et.Element("torus", {"major" : "30.*mm", "minor" : "20.*mm" })
     op6.addComp(components.Cone(comp4))

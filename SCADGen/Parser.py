@@ -68,6 +68,7 @@ class Parser:
             attrs = []
             for child in elem:
                 if self.isBinary(child) or self.isComp(child) or self.isUnary(child) or self.isNary(child):
+                    if comp1 is not None: raise RuntimeError("found more than 1 components in a Unary")
                     comp1 = child
                 else:
                     attrs.append(child)

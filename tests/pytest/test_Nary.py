@@ -10,7 +10,7 @@ import xml.etree.ElementTree as et
 
 def test_difference_Comp1Height():
     elem1 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
-    elem2 = et.Element("cone", { "height" : "5.*mm", "topRadius" : "0.*mm", "bottomRadius" : "2.5*mm" })
+    elem2 = et.Element("cone", { "height" : "5.*mm", "radius" : "2.5*mm" })
     op = operations.Difference()
     op.addComp(components.Cylinder(elem1))
     op.addComp(components.Cone(elem2))
@@ -18,7 +18,7 @@ def test_difference_Comp1Height():
 
 def test_difference_Comp1Radius():
     elem1 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
-    elem2 = et.Element("cone", { "height" : "5.*mm", "topRadius" : "0.*mm", "bottomRadius" : "2.5*mm" })
+    elem2 = et.Element("cone", { "height" : "5.*mm", "radius" : "2.5*mm" })
     op = operations.Difference()
     op.addComp(components.Cylinder(elem1))
     op.addComp(components.Cone(elem2))
@@ -26,7 +26,7 @@ def test_difference_Comp1Radius():
 
 def test_difference_Comp2Height():
     elem1 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
-    elem2 = et.Element("cone", { "height" : "5.*mm", "topRadius" : "0.*mm", "bottomRadius" : "2.5*mm" })
+    elem2 = et.Element("cone", { "height" : "5.*mm", "radius" : "2.5*mm" })
     op = operations.Difference()
     op.addComp(components.Cylinder(elem1))
     op.addComp(components.Cone(elem2))
@@ -34,19 +34,11 @@ def test_difference_Comp2Height():
 
 def test_difference_Comp2Top():
     elem1 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
-    elem2 = et.Element("cone", { "height" : "5.*mm", "topRadius" : "0.*mm", "bottomRadius" : "2.5*mm" })
+    elem2 = et.Element("cone", { "height" : "5.*mm", "radius" : "2.5*mm" })
     op = operations.Difference()
     op.addComp(components.Cylinder(elem1))
     op.addComp(components.Cone(elem2))
-    assert(op[1].top_radius == 0)
-
-def test_difference_Comp2Bottom():
-    elem1 = et.Element("cylinder", { "height" : "5.*mm", "radius" : "2.5*mm" })
-    elem2 = et.Element("cone", { "height" : "5.*mm", "topRadius" : "0.*mm", "bottomRadius" : "2.5*mm" })
-    op = operations.Difference()
-    op.addComp(components.Cylinder(elem1))
-    op.addComp(components.Cone(elem2))
-    assert(op[1].bottom_radius == 2.5)
+    assert(op[1].radius == 2.5)
 
 def test_intersection_Comp1Radius():
     elem1 = et.Element("sphere", { "radius" : "5.*mm" })

@@ -4,7 +4,7 @@
 
     <difference>
         <cylinder height="3.*cm" radius="0.5*cm"/>
-        <cone height="3.01*cm" topRadius="0.1*cm" bottomRadius="0.5*cm"/>
+        <cone height="3.01*cm" radius="0.5*cm"/>
     </difference>
 
 </geometry>
