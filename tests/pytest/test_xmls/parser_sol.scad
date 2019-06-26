@@ -19,7 +19,7 @@ scale([3.0, 3.0, 3.0]) {
 );
 }
     union() {
-    cylinder(h = 20.0, r1 = 20.0, r2 = 10.0, $fn=100, center=true);
+    translate([0.0, 0.0, -10.0]) {cylinder(h = 20.0,  r1 = 20.0, r2=0,  $fn=100, center=true);}
     cylinder(h = 10.0, r = 20.0, $fn=100, center=true);
     Torus(30.0, 20.0);
 }

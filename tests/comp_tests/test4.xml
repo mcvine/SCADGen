@@ -4,7 +4,7 @@
 
     <intersection>
         <difference>
-            <cone height="10.*mm" topRadius="5.*mm" bottomRadius="10.*mm"/>
+            <cone height="10.*mm" radius="10.*mm"/>
             <cylinder height="10.*mm" radius="5.*mm"/>
         </difference>
         <rotation>

@@ -15,9 +15,9 @@ def test_block_str():
     assert("{0!s}".format(test) == sol)
 
 def test_cone_str():
-    elem1 = et.Element("cone", { "height" : "5.*mm", "topRadius" : "2.*mm", "bottomRadius" : "4.*mm" })
+    elem1 = et.Element("cone", { "height" : "5.*mm", "radius" : "4.*mm" })
     test = components.Cone(elem1)
-    sol = "cylinder(h = 5.0, r1 = 4.0, r2 = 2.0, $fn=100, center=true);"
+    sol = "translate([0.0, 0.0, -2.5]) {cylinder(h = 5.0,  r1 = 4.0, r2=0,  $fn=100, center=true);}"
     assert("{0!s}".format(test) == sol)
 
 def test_cylinder_str():
@@ -50,7 +50,7 @@ def test_torus_str():
 
 def test_difference_str():
     elem1 = et.Element("cylinder", { "radius" : "2.5*mm", "height" : "5.*mm" })
-    elem2 = et.Element("cone", { "bottomRadius" : "2.5*mm", "topRadius" : "0.*mm", "height" : "5.*mm" })
+    elem2 = et.Element("cone", { "radius" : "2.5*mm", "height" : "5.*mm" })
     comp1 = components.Cylinder(elem1)
     comp2 = components.Cone(elem2)
     test = operations.Difference()
@@ -58,7 +58,7 @@ def test_difference_str():
     test.addComp(comp2)
     sol = """difference() {
     cylinder(h = 5.0, r = 2.5, $fn=100, center=true);
-    cylinder(h = 5.0, r1 = 2.5, r2 = 0.0, $fn=100, center=true);
+    translate([0.0, 0.0, -2.5]) {cylinder(h = 5.0,  r1 = 2.5, r2=0,  $fn=100, center=true);}
 }"""
     assert("{0!s}".format(test) == sol)
 
